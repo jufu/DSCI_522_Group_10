@@ -27,7 +27,7 @@ To replicate the analysis, clone this GitHub repository, install the [dependenci
 ```
 python src/download_and_extract_zip.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/00222/bank.zip --out_file="data/raw/"
 
-Rscript -e "rmarkdown::render('src/xxx_eda.Rmd')"
+python "eda/Bank_Marketing_EDA.ipynb"
 ```
 
 ## Dependencies
