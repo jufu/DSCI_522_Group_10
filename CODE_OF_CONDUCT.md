@@ -1,56 +1,53 @@
-### This is a templete from DSCI 100, to be edited
+# Contributor Covenant Code of Conduct
 
-### Introduction
-For DSCI 100, we are committed to creating a friendly and respectful place for learning, teaching and contributing. 
-All participants in our course and communications are expected to show respect and courtesy to others.
+## Our Pledge
 
-To make clear what is expected, everyone participating in DSCI 100 activities is required to conform to the Code of Conduct. 
-This Code of Conduct applies to all spaces managed by DSCI 100 including, but not limited to, class meetings, email communication, and online forums such as Piazza and GitHub. The DSCI 100 teaching team are expected to assist with the enforcement of the Code of Conduct.
+In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
 
-The DSCI 100 Instructor(s) is responsible for enforcing the Code of Conduct. All reports will be reviewed by the Instructor(s) and will be kept confidential.
+## Our Standards
 
-### The DSCI 100 Code of Conduct
-For DSCI 100, we are dedicated to providing a welcoming and supportive environment for all people, regardless of background or identity. As such, we do not tolerate behaviour that is disrespectful to our teachers or learners or that excludes, intimidates, or causes discomfort to others. We do not tolerate discrimination or harassment based on characteristics that include, but are not limited to, gender identity and expression, sexual orientation, disability, physical appearance, body size, citizenship, nationality, ethnic or social origin, pregnancy, familial status, veteran status, genetic information, religion or belief (or lack thereof), membership of a national minority, property, age, education, socio-economic status, technical choices, and experience level.
+Examples of behavior that contributes to creating a positive environment include:
 
-Everyone who participates in DSCI 100 activities is required to conform to this Code of Conduct. It applies to all spaces managed by DSCI 100 including, but not limited to, class meetings, email communication, and online forums such as Piazza and GitHub. The DSCI 100 teaching team are expected to assist with the enforcement of the Code of Conduct. 
+* Using welcoming and inclusive language
+* Being respectful of differing viewpoints and experiences
+* Gracefully accepting constructive criticism
+* Focusing on what is best for the community
+* Showing empathy towards other community members
 
-#### Expected Behavior
+Examples of unacceptable behavior by participants include:
 
-All participants in our events and communications are expected to show respect and courtesy to others. All interactions should be professional regardless of platform: either online or in-person. In order to foster a positive and professional learning environment we encourage the following kinds of behaviours in all DSCI 100 events and platforms:
+* The use of sexualized language or imagery and unwelcome sexual attention or advances
+* Trolling, insulting/derogatory comments, and personal or political attacks
+* Public or private harassment
+* Publishing others' private information, such as a physical or electronic address, without explicit permission
+* Other conduct which could reasonably be considered inappropriate in a professional setting
 
-- Use welcoming and inclusive language
-- Be respectful of different viewpoints and experiences
-- Gracefully accept constructive criticism
-- Focus on what is best for the community
-- Show courtesy and respect towards other community members
+## Our Responsibilities
 
-Note: See the [four social rules](https://www.recurse.com/manual#sub-sec-social-rules) for further recommendations.
+Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
 
-#### Unacceptable Behavior
+Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
 
-Examples of unacceptable behavior by participants at any DSCI 100 event/platform include:
+## Scope
 
-- written or verbal comments which have the effect of excluding people on the basis of membership of any specific group
-- causing someone to fear for their safety, such as through stalking, following, or intimidation
-- violent threats or language directed against another person
-- the display of sexual or violent images
-- unwelcome sexual attention
-- nonconsensual or unwelcome physical contact
-- sustained disruption of talks, events or communications
-- insults or put downs
-- sexist, racist, homophobic, transphobic, ableist, or exclusionary jokes
-- excessive swearing
-- incitement to violence, suicide, or self-harm
-- continuing to initiate interaction (including photography or recording) with someone after being asked to stop
-publication of private communication without consent
+This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
 
-#### Consequences of Unacceptable Behavior
+## Enforcement
 
-Participants who are asked to stop any inappropriate behavior are expected to comply immediately. This applies to any DSCI 100 events and platforms, either online or in-person. If a participant engages in behavior that violates this code of conduct, the teaching team may warn the offender and or engage the DSCI 100 Instructor to investigate the Code of Conduct violation and impose appropriate sanctions.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at:
 
-### Incident Reporting Guidelines
+- Asma Al-Odaini (github id anodaini)
+- Justin Fu  (github id jufu)
+- Chuck Ho  (github id ChuckHo777)
+- Junting He (github id JuntingHe)
 
-If someone violates the Code of Conduct during a DSCI 100 event or in an online space outside of organised events, we ask that you report it to the Instructor(s). The current instructor of DSCI100 is Trevor Campbell. An email to trevor@stat.ubc.ca will be seen by Trevor Campbell. To report a DSCI 100 code of conduct violation that will not be seen by Trevor Campbell, an alternative contact person is Bruce Dunham, Professor of Teaching in the Department of Statistics at UBC. His email is b.dunham@stat.ubc.ca .
+The project team will review and investigate all complaints, and will respond in a way that it deems appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
 
-## Attribution 
-- Derived from the [Carpentries Code of Conduct](https://docs.carpentries.org/topic_folders/policies/code-of-conduct.html)
+Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
+
+## Attribution
+
+This Code of Conduct is copied from the [tidyverse Code of Conduct](https://github.com/tidyverse/tidyverse.org/blob/master/CODE_OF_CONDUCT.md), which was adapted from the [Contributor Covenant][homepage], version 1.4, available at [http://contributor-covenant.org/version/1/4][version]
+
+[homepage]: http://contributor-covenant.org
+[version]: http://contributor-covenant.org/version/1/4/
