@@ -9,6 +9,9 @@ Options:
 <url>               URL to download zip file from (must be a zip file with no password)
 <out_path>          Path (including filename) of where to extract the zip file contents to
 
+Example:
+    python download_and_extract_zip.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/00222/bank.zip --out_file="../data/raw/"
+
 """
 
 import zipfile
@@ -33,7 +36,7 @@ def main(url, out_path):
 
     Example
     ----------
-    main(f"https://archive.ics.uci.edu/ml/machine-learning-databases/00222/bank.zip", "../data/"
+    main(f"https://archive.ics.uci.edu/ml/machine-learning-databases/00222/bank.zip", "../data/raw/"
     """
     #if __name__ == "__main__":
     #main(opt["--url"], opt["--out_file"])
