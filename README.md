@@ -31,10 +31,14 @@ python "eda/Bank_Marketing_EDA.ipynb"
 ```
 
 ## Dependencies
+
 channels:
+
   - conda-forge
   - defaults
+  
 dependencies:
+
   - ipykernel
   - matplotlib>=3.2.2
   - scikit-learn>=0.23.2
@@ -75,6 +79,6 @@ conda activate bank
 ## License
 The Post Campaign Bank Term Deposit Subscription Predictor materials here are licensed under the Creative Commons Attribution 2.5 Canada License (CC BY 2.5 CA). If re-using/re-mixing please provide attribution and link to this webpage.
 
-# References
+## References
 
 [Moro et al., 2014] S. Moro, P. Cortez and P. Rita.  2014. “UCI Machine Learning Repository.” University of California, Irvine, School of Information; Computer Sciences. http://archive.ics.uci.edu/ml.
