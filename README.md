@@ -25,7 +25,7 @@ Thus far we have performed some exploratory data analysis, and the report for th
 To replicate the analysis, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run the following commands at the command line/terminal from the root directory of this project:
 
 ```
-python src/download_and_extract_zip.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/00222/bank.zip --out_file="data/raw/"
+python src/download_and_extract_zip.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/00222/bank-additional.zip --out_file="data/raw/"
 
 python src/bank_marketing_data_eda.ipynb
 ```
@@ -33,12 +33,9 @@ python src/bank_marketing_data_eda.ipynb
 ## Dependencies
 
 channels:
-
   - conda-forge
   - defaults
-  
 dependencies:
-
   - ipykernel
   - matplotlib>=3.2.2
   - scikit-learn>=0.23.2
@@ -56,20 +53,8 @@ dependencies:
     - xgboost>=1.*
     - lightgbm>=3.*
     - git+git://github.com/mgelbart/plot-classifier.git
-- Python 3.7.3 and Python packages:
-  - docopt==0.6.2
-  - requests==2.22.0
-  - pandas==0.24.2
-  - feather-format==0.4.0
-- R version 3.6.1 and R packages:
-  - knitr==1.26
-  - feather==0.3.5
-  - tidyverse==1.2.1
-  - caret==6.0-84
-  - ggridges==0.5.1
-  - ggthemes==4.2.0
-  
-  
+
+    
 We are providing you with a `conda` environment file which is available [here](env-bank_marketing.yaml). You can download this file and create a conda environment for this project and activate it as follows. 
 
 ```
