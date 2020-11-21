@@ -1,6 +1,6 @@
 # Post Campaign Bank Term Deposit Subscription Predictor
 - author: DSCI 522 Group10
-- Group Member: Justin Fu, Junting He, Chuck Ho, Asma Al`daini
+- Group Member: Justin Fu, Junting He, Chuck Ho, Asma Al-Odaini
 
 A data analysis project for DSCI 522 (Data Science workflows); a course in the Master of Data Science program at the University of British Columbia.
 
