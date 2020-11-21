@@ -47,6 +47,7 @@ dependencies:
   - graphviz
   - python-graphviz
   - altair>=4.1.0
+  - altair_saver
   - jinja2
   - pip>=20
   - pandas-profiling>=1.4.3
