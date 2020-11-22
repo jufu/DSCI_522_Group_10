@@ -18,7 +18,7 @@ While we are keen in predicting one of two classes and learning the importance o
 
 After selecting our final model, we will re-fit the model on the entire training data set, and then evaluate its performance on the test data set. At this point we will look at overall accuracy as well as misclassification errors (from the confusion matrix) to assess prediction performance. These values will be reported as a confusion matrix plot and table in the final report. The importance of the predictors will also be reported as a table in the final report.
 
-Thus far we have performed some exploratory data analysis, and the report for that can be found [here](src/bank_marketing_data_eda.ipynb).
+Thus far we have performed some exploratory data analysis, and the report for that can be found [here](http://htmlpreview.github.io/?https://raw.githubusercontent.com/UBC-MDS/DSCI_522_Group_10/main/src/bank_marketing_data_eda.html).
 
 ## Usage
 
