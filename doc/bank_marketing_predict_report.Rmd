@@ -1,0 +1,50 @@
+---
+title: "Predicting deposit product subscription from contacted customers"
+author: "Asma Al-Odaini, Chuck Ho, Justin Fu, Junting He"
+date: "2020/11/26 (updated: `r Sys.Date()`)"
+always_allow_html: true
+output: 
+  html_document:
+    toc: true
+bibliography: bank_marketing_refs.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+library(caret)
+library(reticulate)
+```
+
+
+# Summary
+
+For this project we are trying to answer the question: given detail records of the this telemarketing campaign outreach, will the contacted customers subscribe to the promoting term deposit product. To answer the predictive question posed above, we plan to build a predictive classification model using logistic regression algorithm. ........(more about the results on our classifirers in terms of accuracy and also the recall(since we may more interested in the false negative))
+
+
+# Introduction
+
+Telemarketing is a method of selling products or services to potential customers using the telephone or the Internet and it is commonly used in banks of promotion. Detecting and focusing more on the target customers could have great impact on save time and money [@barich1991framework]. 
+
+In this project, we ask if a machine learning algorithm can be used to predict whether a newly contacted customer subscribe to the promoting term deposit product. Answering this question is important to bank as they can better estimate potential subscription for the pool of remaining targets, or even for next similar campaign [@moro2014data]. Furthermore, we would also want to identify the key attributes of customers (e.g demographics) and the nature of the call (e.g. the month, day of the week, contact method) to help the tele-marketing team to prioritize resources in calling the higher potential customers and adjusting time and medium for the calling. Therefore, if we can use a machine learning algorithm to make an accurate and effective prediction on whether a newly contacted customer subscribe to the promoting term deposit product, this could may be beneficial to building longer and tighter relations and enhancing business demand [@rust2010spotlight].
+
+
+# Methods
+
+## Data
+
+The data set used in this project is from from a marketing campaign of a Portuguese bank and created by S. Moro, P. Cortez and P. Rita [@moro2014data]. It was sourced from the UCI Machine Learning Repository [@Srcrepo] and can be found [here](https://archive.ics.uci.edu/ml/datasets/Bank+Marketing). Each row in the data set represents summary statistics with detail information of the contacted client, including bank client info (e.g. age, job, loan experience, etc.), other campaign attributes (e.g. number of contact, previous campaign outcome, etc) and social and economic attributes. (e.g. consumer confidence index, euribor rate, etc.)
+
+
+## Analysis
+
+The logistic regression (lr) algorithm was used to build a classification model to predict whether whether a newly contacted customer subscribe to the promoting term deposit product (found in the y column of the data set). (edit here: What variable are used????) Since our predictors are mixed with different types of variables and contains unknown values (e.g. education), we are considering to perform imputation and other pre-processing such as One Hot Encoder for categorical predictors and standard scaler for numeric predictors before model fitting and hyperparameter optimization. We will try hyperparameter optimization on C and carry out cross-validation using ~ 100 folds because the train data set is very large, having 32950 observations. We will use overall accuracy, f1, recall and precision scores to choose C. A table of these metrics for C will be included as part of the final report for this project. The  Python programming languages [@Python] and the following Python packages were used to perform the analysis:xxxx. The code used to perform the analysis and create this report can be found here: xxxx
+
+
+# Results & Discussion
+
+finish this  after having the model's results!!!!!!!!!!
+
+# References
