@@ -12,8 +12,6 @@ Example:
 
 """
 
-import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 import altair as alt
 from sklearn.model_selection import train_test_split
@@ -44,6 +42,8 @@ def main(opt):
         "poutcome": "Previous Outcome",
         "contact": "Contact",
         "education": "Education",
+        "day_of_week": "Day of the week",
+        "month": "Month",
     }
 
     education_ordering = [
@@ -57,9 +57,24 @@ def main(opt):
         "unknown",
     ]
 
+    month_ordering = [
+        "jan",
+        "feb",
+        "mar",
+        "apr",
+        "may",
+        "jun",
+        "jul",
+        "aug",
+        "sep",
+        "oct",
+        "nov",
+        "dec",
+    ]
+
+    day_ordering = ["mon", "tue", "wed", "thu", "fri"]
+
     for feature, name in categorical_features.items():
-        categories = list(train_df[feature].unique())
-        percent_purchased = {}
         counts_y = train_df.groupby(by=[feature, target])[target].count()
         percent_purchased = (
             pd.DataFrame(counts_y)
@@ -107,7 +122,7 @@ def main(opt):
                 )
             )
         path = str(opt["--image_path"]) + feature + ".svg"
-        plot.save(path)
+        plot.save(path, scale_factor=3.0)
 
 
 if __name__ == "__main__":
