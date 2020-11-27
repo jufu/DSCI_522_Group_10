@@ -82,8 +82,8 @@ def main(in_filename, out_path):
     prefix_file = ntpath.basename(in_filename).split(".")[0]
 
     
-    train_df.to_csv(output_folder + prefix_file + "_train.csv")    
-    test_df.to_csv(output_folder + prefix_file + "_test.csv")
+    train_df.to_csv(output_folder + prefix_file + "_train.csv", index=False)    
+    test_df.to_csv(output_folder + prefix_file + "_test.csv", index=False)
     
     print("Successfully cleansed, pre-processed, transformed and split to the folder: " + output_folder)
 
