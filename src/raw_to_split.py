@@ -63,78 +63,17 @@ def main(in_filename, out_path):
         print("Error: ", e)
 
     df = bank_add_full
+
+
+    #Transform targets to numeric so they can be supported by recall, precision and f1 score metrics
+    df.loc[df.y == 'no', 'y'] = 0
+    df.loc[df.y == 'yes', 'y'] = 1
+    df['y'] = pd.to_numeric(df['y'])
+
+    
+  
     train_df, test_df = train_test_split(df, test_size=0.20, random_state=123)
-    X_train = train_df.drop(columns=["y"])
-    y_train = train_df["y"]
-    X_test = test_df.drop(columns=["y"])
-    y_test = test_df["y"]
-
-    drop_features = []
-    numeric_features = [
-        "age",
-        "duration",
-        "campaign",
-        "pdays",
-        "previous",
-        "emp.var.rate",
-        "cons.price.idx",
-        "cons.conf.idx",
-        "euribor3m",
-        "nr.employed",
-    ]
-    categorical_features = [
-        "job",
-        "marital",
-        "default",
-        "housing",
-        "loan",
-        "poutcome",
-    ]
-    ordinal_features = ["education"]
-    ordering = [
-        "illiterate",
-        "basic.4y",
-        "basic.6y",
-        "basic.9y",
-        "high.school",
-        "professional.course",
-        "university.degree",
-        "unknown",
-    ]
-    target = ["y"]
-
-    numeric_transformer = make_pipeline(
-        SimpleImputer(strategy="median"), StandardScaler()
-    )
-    ordinal_transformer = make_pipeline(
-        SimpleImputer(strategy="most_frequent"),
-        OrdinalEncoder(categories=[ordering] * len(ordinal_features)),
-    )
-    categorical_transformer = make_pipeline(
-        SimpleImputer(strategy="constant", fill_value="missing"),
-        OneHotEncoder(handle_unknown="ignore", sparse=False),
-    )
-
-    preprocessor = make_column_transformer(
-        ("drop", drop_features),
-        (numeric_transformer, numeric_features),
-        (ordinal_transformer, ordinal_features),
-        (categorical_transformer, categorical_features),
-    )
-
-    preprocessor.fit(X_train)
-
-    ohe_columns = list(
-        preprocessor.named_transformers_["pipeline-3"]
-        .named_steps["onehotencoder"]
-        .get_feature_names(categorical_features)
-    )
-    new_columns = numeric_features + ordinal_features + ohe_columns
-
-    X_train_enc = pd.DataFrame(
-        preprocessor.transform(X_train), index=X_train.index, columns=new_columns
-    )
-
+  
     output_folder = out_path + "/processed/"
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
@@ -142,11 +81,10 @@ def main(in_filename, out_path):
     # get base filename
     prefix_file = ntpath.basename(in_filename).split(".")[0]
 
-    X_train_enc.to_csv(output_folder + prefix_file + "_X_train_enc.csv")
-    X_train.to_csv(output_folder + prefix_file + "_X_train.csv")
-    y_train.to_csv(output_folder + prefix_file + "_y_train.csv")
-    X_test.to_csv(output_folder + prefix_file + "_X_test.csv")
-    y_test.to_csv(output_folder + prefix_file + "_y_test.csv")
+    
+    train_df.to_csv(output_folder + prefix_file + "_train.csv")    
+    test_df.to_csv(output_folder + prefix_file + "_test.csv")
+    
     print("Successfully cleansed, pre-processed, transformed and split to the folder: " + output_folder)
 
 
