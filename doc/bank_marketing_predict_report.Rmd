@@ -21,7 +21,7 @@ library(reticulate)
 
 # Summary
 
-For this project we are trying to answer the question: given detail records of the this telemarketing campaign outreach, will the contacted customers subscribe to the promoting term deposit product. To answer the predictive question posed above, we plan to build a predictive classification model using logistic regression algorithm. ........(more about the results on our classifirers in terms of accuracy and also the recall(since we may more interested in the false negative))
+For this project we are trying to answer the question: given detail records of the this telemarketing campaign outreach, will the contacted customers subscribe to the promoting term deposit product. To answer the predictive question posed above, we plan to build a predictive classification model using logistic regression algorithm. ........(more about the results on our classifiers in terms of accuracy and also the recall(since we may more interested in the false negative))
 
 
 # Introduction
