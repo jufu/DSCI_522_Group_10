@@ -47,6 +47,15 @@ Rscript -e "rmarkdown::render('doc/bank_marketing_predict_report.Rmd', output_fo
 
 ## Dependencies
 
+### Python
+
+We are providing you with a `conda` environment file which is available [here](env-bank_marketing.yaml). You can download this file and create a conda environment for this project and activate it as follows. 
+
+```
+conda env create -f env-bank_marketing.yaml
+conda activate bank
+```
+
 channels:
   - conda-forge
   - defaults
@@ -71,14 +80,13 @@ dependencies:
     - lightgbm>=3.*
     - git+git://github.com/mgelbart/plot-classifier.git
     
-
+### R
+R version 3.6.1 and R packages:
+  - knitr==1.26
+  - tidyverse==1.2.1
+  - caret==6.0-84
+  - ggridges==0.5.1
     
-We are providing you with a `conda` environment file which is available [here](env-bank_marketing.yaml). You can download this file and create a conda environment for this project and activate it as follows. 
-
-```
-conda env create -f env-bank_marketing.yaml
-conda activate bank
-```
   
 ## License
 The Post Campaign Bank Term Deposit Subscription Predictor materials here are licensed under the Creative Commons Attribution 2.5 Canada License (CC BY 2.5 CA). If re-using/re-mixing please provide attribution and link to this webpage.
