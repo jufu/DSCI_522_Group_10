@@ -25,9 +25,26 @@ Thus far we have performed some exploratory data analysis, and the report for th
 To replicate the analysis, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run the following commands at the command line/terminal from the root directory of this project:
 
 ```
+# download data and unzip data folder 
 python src/download_and_extract_zip.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/00222/bank-additional.zip --out_file="data/raw/"
 
+# split data 
+python src/raw_to_split.py --in_file="data/raw/bank-additional-full.csv" --out_file="data"
+
+# run eda report
 python src/bank_marketing_data_eda.ipynb
+
+# create exploratory data analysis figure for numeric features and write to file 
+Rscript src/data_vis_continous.R --data_path='data/processed/bank-additional-full_train.csv' --image_path='results/'  
+
+# create exploratory data analysis figure for categorical features and write to file 
+python src/data_vis.py --data_path="data/processed/bank-additional-full_train.csv" --image_path="results/"
+
+# create, train, and test model
+python src/machine_learning_analysis.py --in_train="data/processed/bank-additional-full_train.csv" --in_test="../data/processed/bank-additional-full_test.csv" --out_path="results/"
+
+# render final report
+Rscript -e "rmarkdown::render('doc/bank_marketing_predict_report.Rmd', output_format = 'github_document')" 
 ```
 
 ## Dependencies
@@ -46,14 +63,16 @@ dependencies:
   - altair>=4.1.0
   - altair_saver
   - docopt
-  - jinja2
+  - jinja2  
   - pip>=20
-  - pandas-profiling>=1.4.3
+  - pandas-profiling>=1.4.3  
+  - seaborn
   - pip:
     - psutil>=5.7.2
     - xgboost>=1.*
     - lightgbm>=3.*
     - git+git://github.com/mgelbart/plot-classifier.git
+    
 
     
 We are providing you with a `conda` environment file which is available [here](env-bank_marketing.yaml). You can download this file and create a conda environment for this project and activate it as follows. 
