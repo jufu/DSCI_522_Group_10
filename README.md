@@ -20,6 +20,10 @@ After selecting our final model, we will re-fit the model on the entire training
 
 Thus far we have performed some exploratory data analysis, and the report for that can be found [here](http://htmlpreview.github.io/?https://raw.githubusercontent.com/UBC-MDS/DSCI_522_Group_10/main/src/bank_marketing_data_eda.html).
 
+## Report
+
+The report can be found [here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/UBC-MDS/DSCI_522_Group_10/main/doc/bank_marketing_predict_report.html).
+
 ## Usage
 
 To replicate the analysis, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run the following commands at the command line/terminal from the root directory of this project:
