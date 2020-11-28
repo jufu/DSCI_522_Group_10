@@ -2,16 +2,17 @@
 author: Chuck Ho
 date: 2020-11-27
 
-This script imports the 'bank_add_full.csv' file and performing machine learning modelling and alaysis.
+This script imports the train and test csv from the proccessed data folder  and performing machine learning modelling and alaysis.
 
-Usage: machine_learning_analysis.py --in_file=<in_file> --out_path=<out_path> 
+Usage: machine_learning_analysis.py --in_train=<in_train> --in_test=<in_test> --out_path=<out_path> 
  
 Options:
---in_file=<in_path>           path including filename of the input file to process (this is a required option)
+--in_train=<in_train>         path including filename of the input train data file to process (this is a required option)
+--in_test=<in_test>           path including filename of the input test data file to process (this is a required option)
 --out_path=<out_path>         path to where the figures and tables will be written to (this is a required option)
 
 Example:
-    python src/machine_learning_analysis.py --in_file="./data/raw/bank-additional-full.csv" --out_path="./results/"
+    python machine_learning_analysis.py --in_train="../data/processed/bank-additional-full_train.csv" --in_test="../data/processed/bank-additional-full_test.csv" --out_path="../results/"
     
 
 """
@@ -99,38 +100,40 @@ warnings.filterwarnings('ignore')
 opt = docopt(__doc__)
 
 
-def main(in_filename, out_path):
+def main(in_train, in_test, out_path):
     """
     Take in the data, perform preprocessing to model fitting, generate analysis with figures and table and output to the given path.
     
     Parameters
     ----------
-    in_filename : string
-        path including filename of the input file to process
+    in_train : string
+        path including filename of the input train data file to process
+    in_test : string
+        path including filename of the input test data file to process    
     out_path : string
         path to where the processed data will be written to
     Example
     ----------
-    main(f"../data/clean/clean_bank.csv", "../result")
+    main("../data/processed/bank-additional-full_train.csv", "../data/processed/bank-additional-full_test.csv", "../result")
     """
 
     # load in data (should be full data before split)   ##need update once clean data script is finalized.
-    bank_add_full = pd.read_csv("../data/raw/bank-additional-full.csv", sep=';')
+    train_df = pd.read_csv(in_train, sep=',')
     
-    df = bank_add_full
+    test_df = pd.read_csv(in_test, sep=',')
     
 
     
     # load in data (should be full data before split)   ## Removed once clean data script is finalized.
-    df2 = df.copy()
-    df2.loc[df['y'] == 'no', 'target'] = 0
-    df2.loc[df['y'] == 'yes', 'target'] = 1
+#     df2 = df.copy()
+#     df2.loc[df['y'] == 'no', 'target'] = 0
+#     df2.loc[df['y'] == 'yes', 'target'] = 1
     
     
     # load in data (should be full data before split)   ## need to update in directly taking in train df and test df from data clean sript
     
     
-    train_df, test_df = train_test_split(df2, test_size = 0.20, random_state=123)
+#     train_df, test_df = train_test_split(df2, test_size = 0.20, random_state=123)
     
     # Define types of features: numeric, categorical, ordinal for now. No drop features  ## need update on drop feature after data clean.
     
@@ -140,8 +143,8 @@ def main(in_filename, out_path):
     ordinal_features = ["education"]
     education_ordering = ['illiterate', 'basic.4y','basic.6y','basic.9y','high.school',
                 'professional.course','university.degree', 'unknown']
-    drop_features = ["y"]
-    target = ["target"]
+    drop_features = []
+    target = ["y"]
     
     
     # drop target for train and test data.
@@ -332,4 +335,5 @@ def main(in_filename, out_path):
 
 
 if __name__ == "__main__":
-    main(opt["--in_file"], opt["--out_path"])
+    main(opt["--in_train"], opt["--in_test"], opt["--out_path"])
+    
