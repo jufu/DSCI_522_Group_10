@@ -25,14 +25,17 @@ Thus far we have performed some exploratory data analysis, and the report for th
 To replicate the analysis, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run the following commands at the command line/terminal from the root directory of this project:
 
 ```
+#activate our conda environment
+conda activate bank
+
 # download data and unzip data folder 
 python src/download_and_extract_zip.py --url=https://archive.ics.uci.edu/ml/machine-learning-databases/00222/bank-additional.zip --out_file="data/raw/"
 
 # split data 
 python src/raw_to_split.py --in_file="data/raw/bank-additional-full.csv" --out_file="data"
 
-# run eda report
-python src/bank_marketing_data_eda.ipynb
+# Render the EDA report
+nbconvert src/bank_marketing_data_eda.ipynb --no-input --to html
 
 # create exploratory data analysis figure for numeric features and write to file 
 Rscript src/data_vis_continous.R --data_path='data/processed/bank-additional-full_train.csv' --image_path='results/'  
