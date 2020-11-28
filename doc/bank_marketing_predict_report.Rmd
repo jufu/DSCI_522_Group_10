@@ -10,7 +10,8 @@ bibliography: bank_marketing_refs.bib
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+
 library(knitr)
 ```
 
@@ -57,16 +58,22 @@ The logistic regression (lr) algorithm was used to build a classification model 
 
 Since our predictors are mixed with different types of variables and contains unknown values (e.g. education), firstly, we performed simple imputation and other pre-processing such as One Hot Encoder for ordinal and categorical predictors, and standard scaler for numeric predictors before model fitting and hyperparameter optimization. Then, we decided to base our decisions on the f1_score with a bias towards recall over precision and performed randomizedsearchcv to choose a model. Based on the cross-validation f1_score, we got into the conclusion that we chose a simple classification model using the logistic regression (balanced）algorithm. Additionally, this algorithm is very interpretable and easier to communicate to higher level management, and balanced class weight can help to deal with our class imbalance.
 
-```{r, echo=FALSE, fig.cap="Figure 4.Scoring on different models.", out.width = '50%'}
-htmltools::includeHTML("file:///Users/junting/DSCI_522_Group_10/results/model_selection.html")
+```{r echo=FALSE, warning=FALSE,  results='asis'}
+tmp <- URLencode(paste(readLines("../result/model_selection.html"), collapse="\n"))
+
+cat('<p align="center"><iframe src="data:text/html;charset=utf-8,', tmp ,
+    '" style="border: none; seamless:seamless; width: 800px; height: 280px"></iframe></p>')
 ```
 Figure 4.Scoring on different models.
 
 
 After that, we did the hyperparameter optimization on C and max_iter by carrying out 5-fold cross-validation and using f1-score as our metric of model prediction performance. We observed that the optimal combination of C C and max_iter were 1 and 1600 respectively..
 
-```{r, echo=FALSE, fig.cap="Figure 5. Results of hyperparameter optimization.", out.width = '50%'}
-htmltools::includeHTML("file:///Users/junting/DSCI_522_Group_10/results/hyperparameter_optimization_result.html")
+```{r echo=FALSE, warning=FALSE, results='asis'}
+tmp <- URLencode(paste(readLines("../results/hyperparameter_optimization_result.html"), collapse="\n"))
+
+cat('<p align="center"><iframe src="data:text/html;charset=utf-8,', tmp ,
+    '" style="border: none; seamless:seamless; width: 800px; height: 180px"></iframe></p>')
 ```
 Figure 5. Results of hyperparameter optimization.
 
