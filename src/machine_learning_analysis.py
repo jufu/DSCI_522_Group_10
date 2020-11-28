@@ -92,8 +92,7 @@ from sklearn.model_selection import (
 # ignore warning 
 import warnings
 warnings.filterwarnings('ignore')
-from pandas.core.common import SettingWithCopyWarning
-warnings.simplefilter(action="ignore", category=SettingWithCopyWarning)
+
 
 
 
@@ -179,14 +178,14 @@ def main(in_filename, out_path):
     # A function to store mean cross-validation validation values 
     def store_cross_val_results(model_name, scores, results_dict):
         results_dict[model_name] = {
-            "accuracy": "{:0.3f}".format(np.mean(scores["test_accuracy"])),
+            "Accuracy": "{:0.3f}".format(np.mean(scores["test_accuracy"])),
     #         "mean_fit_time (s)": "{:0.4f}".format(np.mean(scores["fit_time"])),   #since it's not critical to get the result within an hour or so, fit and score time would not matter much
     #         "mean_score_time (s)": "{:0.4f}".format(np.mean(scores["score_time"])),
-            "recall": "{:0.3f}".format(np.mean(scores["test_recall"])),
-            "precision": "{:0.3f}".format(np.mean(scores["test_precision"])),
+            "Recall": "{:0.3f}".format(np.mean(scores["test_recall"])),
+            "Precision": "{:0.3f}".format(np.mean(scores["test_precision"])),
             "f1": "{:0.3f}".format(np.mean(scores["test_f1"])),
             "AP": "{:0.3f}".format(np.mean(scores["test_average_precision"])),
-            "roc_auc": "{:0.3f}".format(np.mean(scores["test_roc_auc"])),
+            "Roc_Auc": "{:0.3f}".format(np.mean(scores["test_roc_auc"])),
         }
     
     
@@ -205,11 +204,12 @@ def main(in_filename, out_path):
     # Fit and score differnet model to see if Logistic Regression is the better classifier in this case.
     models = {
         "Decision Tree": DecisionTreeClassifier(),
-        "RBF SVM": SVC(),
         "Naive Bayes": GaussianNB(),
-        "Logistic Regression": LogisticRegression(),  #max_iter=2000
-        "Logistic Regression (balanced)": LogisticRegression(class_weight="balanced"),  #max_iter=2000,
+        "RBF SVM": SVC(),
+        "Logistic Regression": LogisticRegression(),  
+        "Logistic Regression (balanced)": LogisticRegression(class_weight="balanced"),
         "Ridge Classifier": RidgeClassifier(),
+        "Ridge Classifier(balanced)": RidgeClassifier(class_weight="balanced"),
         "Random Forest": RandomForestClassifier(),
         "Random Forest (balanced)": RandomForestClassifier(class_weight="balanced")
     }
@@ -219,7 +219,7 @@ def main(in_filename, out_path):
         scores = cross_validate(pipe, X_train, y_train, cv=5, scoring=scoring, n_jobs=-1)
         summary = store_cross_val_results(model_name, scores, results_df)
     model_selection = pd.DataFrame(results_df).T 
-    model_selection.style.set_properties(**{'text-align': 'center'}, justify = "center")
+    model_selection.style.set_properties(**{'text-align': 'center'})
 
 
     # Generated the model summary to out_path folder (if not exist, create it)
@@ -229,7 +229,7 @@ def main(in_filename, out_path):
         os.makedirs(output_folder)
     
 
-    model_selection.to_html(output_folder + "model_selection.html")
+    model_selection.to_html(output_folder + "model_selection.html", justify = "center")
     
     
     
@@ -261,6 +261,7 @@ def main(in_filename, out_path):
     
 
     hyper_opt_result.rename(columns= {'mean_test_score':'f1', 'rank_test_score':'rank'}, inplace=True)
+    hyper_opt_result.style.set_properties(**{'text-align': 'center'}).set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
     hyper_opt_result.to_html(output_folder + "hyperparameter_optimization_result.html", justify = "center", index=False)
     
     
@@ -306,6 +307,19 @@ def main(in_filename, out_path):
     
     feature_importance["abs"] = abs(feature_importance["Coefficient"])
     feature_importance_top10 = feature_importance.sort_values(by="abs", ascending=False).nlargest(10,'abs')
+    feature_importance_top10['Predictors'] = feature_importance_top10['Predictors'].replace({   
+        "duration" : "Last Contact Duration",
+        "emp.var.rate": "Employment Variation Rate",
+        "cons.price.idx": "Consumer Price Index",
+        "euribor3m": "Euribor 3 Month Rate",
+        "poutcome_failure" : "Failed in Previous Contact",
+        "month_mar" : "March",
+        "month_may" : "May",
+        "month_jun" : "June",
+        "month_nov" : "Nov",
+        "month_aug" : "Aug"
+    })
+    feature_importance_top10 = feature_importance_top10.round(2)
     feature_importance_top10.to_html(output_folder +  "top10_predictors_table.html", justify = "center", index=False)
     
     
