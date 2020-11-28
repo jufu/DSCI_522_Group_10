@@ -12,6 +12,7 @@ dependencies:
   - python-graphviz
   - altair>=4.1.0
   - altair_saver
+  - seaborn
   - docopt
   - jinja2
   - pip>=20
