@@ -39,7 +39,7 @@ python src/data_vis.py --data_path="data/processed/bank-additional-full_train.cs
 jupyter nbconvert src/bank_marketing_data_eda.ipynb --no-input --to html
 
 # create, train, and test model
-python src/machine_learning_analysis.py --in_train="data/processed/bank-additional-full_train.csv" --in_test="../data/processed/bank-additional-full_test.csv" --out_path="results/"
+python src/machine_learning_analysis.py --in_train="data/processed/bank-additional-full_train.csv" --in_test="data/processed/bank-additional-full_test.csv" --out_path="results/"
 
 # render final report
 Rscript -e "rmarkdown::render('doc/bank_marketing_predict_report.Rmd', output_format = 'github_document')" 
