@@ -11,12 +11,12 @@ dependencies:
   - graphviz
   - python-graphviz
   - altair>=4.1.0
-  - altair_saver
-  - seaborn
+  - altair_saver  
   - docopt
   - jinja2
   - pip>=20
   - pandas-profiling>=1.4.3
+  - seaborn
   - pip:
     - psutil>=5.7.2
     - xgboost>=1.*
