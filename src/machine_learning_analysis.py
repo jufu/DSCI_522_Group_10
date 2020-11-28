@@ -11,7 +11,9 @@ Options:
 --out_path=<out_path>         path to where the figures and tables will be written to (this is a required option)
 
 Example:
-    python src/machine_learning_analysis.py --in_file="../data/raw/bank-additional-full.csv" --out_path="../result/"
+    python src/machine_learning_analysis.py --in_file="./data/raw/bank-additional-full.csv" --out_path="./results/"
+    
+
 """
 
 #Standards
@@ -20,7 +22,7 @@ import numpy as np
 import pandas as pd
 import string
 from collections import deque
-
+from docopt import docopt
 
 
 #Plots
@@ -90,6 +92,8 @@ from sklearn.model_selection import (
 # ignore warning 
 import warnings
 warnings.filterwarnings('ignore')
+from pandas.core.common import SettingWithCopyWarning
+warnings.simplefilter(action="ignore", category=SettingWithCopyWarning)
 
 
 
@@ -175,14 +179,14 @@ def main(in_filename, out_path):
     # A function to store mean cross-validation validation values 
     def store_cross_val_results(model_name, scores, results_dict):
         results_dict[model_name] = {
-            "accuracy": "{:0.4f}".format(np.mean(scores["test_accuracy"])),
+            "accuracy": "{:0.3f}".format(np.mean(scores["test_accuracy"])),
     #         "mean_fit_time (s)": "{:0.4f}".format(np.mean(scores["fit_time"])),   #since it's not critical to get the result within an hour or so, fit and score time would not matter much
     #         "mean_score_time (s)": "{:0.4f}".format(np.mean(scores["score_time"])),
-            "recall": "{:0.4f}".format(np.mean(scores["test_recall"])),
-            "precision": "{:0.4f}".format(np.mean(scores["test_precision"])),
-            "f1": "{:0.4f}".format(np.mean(scores["test_f1"])),
-            "AP": "{:0.4f}".format(np.mean(scores["test_average_precision"])),
-            "roc_auc": "{:0.4f}".format(np.mean(scores["test_roc_auc"])),
+            "recall": "{:0.3f}".format(np.mean(scores["test_recall"])),
+            "precision": "{:0.3f}".format(np.mean(scores["test_precision"])),
+            "f1": "{:0.3f}".format(np.mean(scores["test_f1"])),
+            "AP": "{:0.3f}".format(np.mean(scores["test_average_precision"])),
+            "roc_auc": "{:0.3f}".format(np.mean(scores["test_roc_auc"])),
         }
     
     
@@ -214,7 +218,8 @@ def main(in_filename, out_path):
         pipe = make_pipeline(preprocessor, model)
         scores = cross_validate(pipe, X_train, y_train, cv=5, scoring=scoring, n_jobs=-1)
         summary = store_cross_val_results(model_name, scores, results_df)
-    model_selection = pd.DataFrame(results_df).T  
+    model_selection = pd.DataFrame(results_df).T 
+    model_selection.style.set_properties(**{'text-align': 'center'}, justify = "center")
 
 
     # Generated the model summary to out_path folder (if not exist, create it)
@@ -256,7 +261,7 @@ def main(in_filename, out_path):
     
 
     hyper_opt_result.rename(columns= {'mean_test_score':'f1', 'rank_test_score':'rank'}, inplace=True)
-    hyper_opt_result.to_html(output_folder + "hyperparameter_optimization_result.html", justify = "center")
+    hyper_opt_result.to_html(output_folder + "hyperparameter_optimization_result.html", justify = "center", index=False)
     
     
     # Bulid pipeline for best model with optimized hyperparameters
@@ -270,7 +275,8 @@ def main(in_filename, out_path):
     
     
     # path2 = "../data/confusion_matrix.png"
-    plt.savefig(output_folder + "confusion_matrix.png")
+    plt.tight_layout()
+    plt.savefig(output_folder + "confusion_matrix.svg", bbox_inches = "tight")
     
 
     
@@ -281,34 +287,34 @@ def main(in_filename, out_path):
     cr_plot = sns.heatmap(report_df.iloc[:-1, :].T, annot=True, cmap="Blues")
     
     #path3 = "../data/classification_report.png"
-    fig = cr_plot.get_figure()
-    fig.savefig(output_folder + "classification_report.png")
+    plt.savefig(output_folder + "classification_report.svg")
     
     
     # Extract Predict name and coefficient from fitted pipeline
     
     weights = pipe_lr_best.named_steps['logisticregression'].coef_.flatten()
     ohe_c_features = list(pipe_lr_best.named_steps['columntransformer'].named_transformers_['pipeline-3'].named_steps['onehotencoder'].get_feature_names(categorical_features))
-    transformed_columns = numeric_features + ordinal_features + ohe_c_features2
+    transformed_columns = numeric_features + ordinal_features + ohe_c_features
     
     # Put them in pd dataframe
     
-    data2={'Predictors':transformed_columns, 'Coefficient':weights}
+    data={'Predictors':transformed_columns, 'Coefficient':weights}
     feature_importance = pd.DataFrame(data)
     
     
     # Extract Predictor Importance and generate the top 10 table
     
-    feature_importance["abs"] = abs(feature_importance_original["coefficient"])
+    feature_importance["abs"] = abs(feature_importance["Coefficient"])
     feature_importance_top10 = feature_importance.sort_values(by="abs", ascending=False).nlargest(10,'abs')
-    feature_importance_top10.to_html(output_folder +  "top10_predictors_table.html", justify = "center")
+    feature_importance_top10.to_html(output_folder +  "top10_predictors_table.html", justify = "center", index=False)
     
     
     # Plotting the top 10 influential predictor (by absolute value of the coefficient) and save it to the folder
-    plot = alt.Chart(feature_importance_top10).mark_bar().encode(x=alt.X("abs", scale=alt.Scale(domain=(0, 4)),title="Feature Coefficients"), y=alt.Y("features", sort="-x", title="Features"))
+    plot = alt.Chart(feature_importance_top10).mark_bar().encode(alt.X("abs:Q", type='quantitative', scale=alt.Scale(domain=(0, 4)),title="Feature Coefficients"), alt.Y("Predictors", sort="-x", title="Features"))
+
         
     # path = "../data/top10_features.svg"
-    plot.save(output_folder +  "top10_predictors_disregard_direction.png")
+    plot.save(output_folder +  "top10_predictors_disregard_direction.svg")
 
 
 if __name__ == "__main__":
