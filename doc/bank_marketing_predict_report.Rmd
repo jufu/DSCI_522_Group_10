@@ -19,9 +19,9 @@ library(knitr)
 
 With a banking institution's telemarketing campaign data, we are attempting to build a classification model to help us identify and pursue customers that will subscribe to a term deposit product. We plan to build a predictive classification model to help us predict customers that will subscribe to the term deposit product.
 
-Our final classification model has reasonable performance on the test data, with a f1-score of 0.6 and an overall accuracy of 0.86. On the 8238 test data cases, we correctly predicted 7091. However, it incorrectly predicted 1147 cases with 1056 being false positives and 91 being false negatives. We were more focused on reducing false negatives to capture more revenue. The false positives are also important as it may require more resources to reach out to potential customers, but our bias was towards revenue (recall).
+Our final classification model has reasonable performance on the test data, with a f1-score of 0.6 and a recall score of 0.90. On the 8238 test data cases, we correctly predicted 7091. However, it incorrectly predicted 1147 cases with 1056 being false positives and 91 being false negatives. We were more focused on reducing false negatives to capture more revenue. The false positives are also important as it may require more resources to reach out to potential customers, but our bias was towards revenue (recall).
 
-This model is not sufficient to be used in the industry since the accuracy and f-1 score still has a lot to improve on. We recommend continuing to improve the classification performance before we use this in production.
+This model is not sufficient to be used in the industry since the f-1 score still has a lot to improve on. We recommend continuing to improve the classification performance before we use this in production.
 
 # Introduction
 
@@ -61,7 +61,7 @@ The logistic regression (lr) algorithm was used to build the classification mode
 
 With this first version of the classification model, we included all features in the model. Future versions of this model will include enhancements such as feature elimination to try and improve our results. The model's pipeline first performs simple imputation and other pre-processing such as One Hot Encoder for ordinal and categorical predictors, and standard scaler for numeric predictors before model fitting and hyperparameter optimization.
 
-Our decisions in choosing the model and also hyperparameter optimization was based on the f1_score with a bias towards recall over precision. Based on the cross-validation f1_score, our conclusion was to use the logistic regression (balanced) algorithm. One advatnage of this algorithm is that it is very interpretable and easier to communicate to higher level management. We also included class weight balancing to help deal with our class imbalance in this spotting a class problem.
+Our decisions in choosing the model and also hyperparameter optimization was based on the f1_score with a bias towards recall over precision. Based on the cross-validation f1_score, our conclusion was to use the logistic regression (balanced) algorithm. One advantage of this algorithm is that it is very interpretable, allows us to understand feature importance, and easier to communicate to higher level management. We also included class weight balancing to help deal with our class imbalance in this spotting a class problem.
 
 ```{r echo=FALSE, warning=FALSE,  results='asis'}
 tmp <- URLencode(paste(readLines("../results/model_selection.html"), collapse="\n"))
@@ -72,7 +72,7 @@ cat('<p align="center"><iframe src="data:text/html;charset=utf-8,', tmp ,
 
 Figure 4. Scoring results on the algorithms tested
 
-After identifying the algorithm to use, we conducted hyperparameter optimization on C and max_iter by carrying out 5-fold cross-validation. We used the f1-score as our metric of model prediction performance. We observed that the optimal combination of C and max_iter were 1 and 1600, respectively. There were also other combinations that also had the same score, so we arbitrarily chose the first one.
+As a result, we are using Logistic Regression (balanced) with class_weight equal to "balanced" which deals with the class imbalance originally identified in our proposal. Then, we conducted hyperparameter optimization for the parmeters C, the inverse of regularization strength, and max_iter, the maximum number of iterations, by carrying out 5-fold cross-validation. We used the f1-score as our metric of model prediction performance. We observed that the optimal combination of C and max_iter were 1 and 200, respectively. There were also other combinations that also had the same score, so we arbitrarily chose the first one.
 
 ```{r echo=FALSE, warning=FALSE, results='asis'}
 tmp <- URLencode(paste(readLines("../results/hyperparameter_optimization_result.html"), collapse="\n"))
@@ -83,7 +83,7 @@ cat('<p align="center"><iframe src="data:text/html;charset=utf-8,', tmp ,
 
 Figure 5. Top 5 results from hyperparameter optimization.
 
-Our classification model has reasonable performance on the test data, with a final f1-score of 0.6 and an overall accuracy of 0.86. As we were focused on minimizing false negatives compared to false positives, as mentioned in the summary, we were using the f1-score as the main metric but had a bias of recall over precision as we focused on capturing as many customers as we can. With the current f1-score, we believe there is more room to improve on this model.
+Our classification model has reasonable performance on the test data, with a final f1-score of 0.6. As we were focused on minimizing false negatives compared to false positives, as mentioned in the summary, we were using the f1-score as the main metric but had a bias of recall over precision as we focused on capturing as many customers as we can. With the current f1-score, we believe there is more room to improve on this model.
 
 ```{r, echo=FALSE, fig.cap="Figure 6. Comfusion matrix on the test result.", out.width = '60%'}
 knitr::include_graphics("../results/confusion_matrix.svg")
