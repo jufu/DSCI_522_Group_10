@@ -34,14 +34,14 @@ python src/download_and_extract_zip.py --url=https://archive.ics.uci.edu/ml/mach
 # split data 
 python src/raw_to_split.py --in_file="data/raw/bank-additional-full.csv" --out_file="data"
 
-# Render the EDA report
-nbconvert src/bank_marketing_data_eda.ipynb --no-input --to html
-
 # create exploratory data analysis figure for numeric features and write to file 
 Rscript src/data_vis_continous.R --data_path='data/processed/bank-additional-full_train.csv' --image_path='results/'  
 
 # create exploratory data analysis figure for categorical features and write to file 
 python src/data_vis.py --data_path="data/processed/bank-additional-full_train.csv" --image_path="results/"
+
+# Render the EDA report
+jupyter nbconvert src/bank_marketing_data_eda.ipynb --no-input --to html
 
 # create, train, and test model
 python src/machine_learning_analysis.py --in_train="data/processed/bank-additional-full_train.csv" --in_test="../data/processed/bank-additional-full_test.csv" --out_path="results/"
