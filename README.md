@@ -91,3 +91,110 @@ The Post Campaign Bank Term Deposit Subscription Predictor materials here are li
 ## References
 
 [Moro et al., 2014] S. Moro, P. Cortez and P. Rita.  2014. “UCI Machine Learning Repository.” University of California, Irvine, School of Information; Computer Sciences. http://archive.ics.uci.edu/ml.
+
+<div id="refs" class="references hanging-indent">
+
+<div id="ref-barich1991framework">
+
+Barich, Howard, and Philip Kotler. 1991. “A Framework for Marketing
+Image Management.” *MIT Sloan Management Review* 32 (2): 94.
+
+</div>
+
+<div id="ref-Dua2019">
+
+Dua, Dheeru, and Casey Graff. 2017. “UCI Machine Learning Repository.”
+University of California, Irvine, School of Information; Computer
+Sciences. <http://archive.ics.uci.edu/ml>.
+
+</div>
+
+<div id="ref-Hunter">
+
+Hunter, J. D. 2007. “Matplotlib: A 2D Graphics Environment.” *Computing
+in Science & Engineering* 9 (3): 90–95.
+<https://doi.org/10.1109/MCSE.2007.55>.
+
+</div>
+
+<div id="ref-docoptpython">
+
+Keleshev, Vladimir. 2014. *Docopt: Command-Line Interface Description
+Language*. <https://github.com/docopt/docopt>.
+
+</div>
+
+<div id="ref-mckinney-proc-scipy-2010">
+
+McKinney. 2010. “Data Structures for Statistical Computing in Python.”
+In *Proceedings of the 9th Python in Science Conference*, edited by
+Stéfan van der Walt and Jarrod Millman, 56–61.
+[https://doi.org/ 10.25080/Majora-92bf1922-00a](https://doi.org/%2010.25080/Majora-92bf1922-00a%20).
+
+</div>
+
+<div id="ref-moro2014data">
+
+Moro, Sérgio, Paulo Cortez, and Paulo Rita. 2014. “A Data-Driven
+Approach to Predict the Success of Bank Telemarketing.” *Decision
+Support Systems* 62: 22–31.
+
+</div>
+
+<div id="ref-numpy">
+
+Oliphant, Travis. n.d. “NumPy: A Guide to NumPy.” USA: Trelgol
+Publishing. <http://www.numpy.org/>.
+
+</div>
+
+<div id="ref-R">
+
+R Core Team. 2020. *R: A Language and Environment for Statistical
+Computing*. Vienna, Austria: R Foundation for Statistical Computing.
+<https://www.R-project.org/>.
+
+</div>
+
+<div id="ref-rust2010spotlight">
+
+Rust, Roland T, Christine Moorman, and Gaurav Bhalla. 2010. “Spotlight
+on Reinvention: Rethinking Marketing.” *Harvard Business Review* 88 (1):
+2–8.
+
+</div>
+
+<div id="ref-Altair2018">
+
+VanderPlas, Jacob, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit
+Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben
+Welsh, and Scott Sievert. 2018. “Altair: Interactive Statistical
+Visualizations for Python.” *Journal of Open Source Software*, December.
+<https://doi.org/10.21105/joss.01057>.
+
+</div>
+
+<div id="ref-Python">
+
+Van Rossum, Guido, and Fred L. Drake. 2009. *Python 3 Reference Manual*.
+Scotts Valley, CA: CreateSpace.
+
+</div>
+
+<div id="ref-michael_waskom_2017_883859">
+
+Waskom, Michael, Olga Botvinnik, Drew O’Kane, Paul Hobson, Saulius
+Lukauskas, David C Gemperline, Tom Augspurger, et al. 2017.
+*Mwaskom/Seaborn: V0.8.1 (September 2017)* (version v0.8.1). Zenodo.
+<https://doi.org/10.5281/zenodo.883859>.
+
+</div>
+
+<div id="ref-knitr">
+
+Xie, Yihui. 2020. *Knitr: A General-Purpose Package for Dynamic Report
+Generation in R*. <https://yihui.org/knitr/>.
+
+</div>
+
+</div>
