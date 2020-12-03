@@ -1,7 +1,7 @@
 """author: Asma Al-Odaini
 date: 2020-11-25
 This script imports the training data file and generates visualizations to explore the features.
-You can choose from the following features:  ["job", "marital_status", "default", "housing", "previous_outcome", "contact": "education", "day_of_week", "month", "last_contact_duration", "contacts_during_campaign", "days_after_previous_contact", "previous_contacts", "employment_variation_rate", "consumer_price_index", "consumer_confidence_index", "euribor_3_month_rate", "number_of_employees"]
+You can choose from the following features:  ["job", "marital_status", "default", "housing", "previous_outcome", "contact": "education", "day_of_week", "month", "last_contact_duration", "contacts_during_campaign", "days_after_previous_contact", "previous_contacts", "employment_variation_rate", "consumer_price_index", "consumer_confidence_index", "euribor_3_month_rate", "number_of_employees"]. If no feature was selected, all features will be visualized. 
 
 Usage: data_vis.py --data_path=<data_path> --image_path=<image_path> [--feature=<feature>] 
 
@@ -181,11 +181,11 @@ def create_categorical_plots(train_df, categorical_features):
             )
         )
         path = str(opt["--image_path"]) + feature + ".png"
-        plot.save(path, scale_factor=3.0)
+        plot.save(path)
         print(name + " plot was created and saved")
 
     print(
-        "Visualizations for categorical variables have been creates in the declared path"
+        "Visualizations for categorical variables have been created in the declared path"
     )
 
 
@@ -221,7 +221,7 @@ def create_numeric_plots(train_df, numeric_features):
         plot.save(path)
         print(name + " plot was created and saved")
 
-    print("Visualizations for numeric variables have been creates in the declared path")
+    print("Visualizations for numeric variables have been created in the declared path")
 
 
 if __name__ == "__main__":
