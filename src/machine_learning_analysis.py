@@ -12,7 +12,7 @@ Options:
 --out_path=<out_path>         path to where the figures and tables will be written to (this is a required option)
 
 Example:
-    python machine_learning_analysis.py --in_train="../data/processed/bank-additional-full_train.csv" --in_test="../data/processed/bank-additional-full_test.csv" --out_path="../results/"
+    python machine_learning_analysis.py --in_train="data/processed/bank-additional-full_train.csv" --in_test="data/processed/bank-additional-full_test.csv" --out_path="results/"
     
 
 """
@@ -122,29 +122,17 @@ def main(in_train, in_test, out_path):
     
     test_df = pd.read_csv(in_test, sep=',')
     
+    # Define types of features: numeric, categorical, ordinal for now. No drop features  ## need update on drop feature after data clean.
 
     
-    # load in data (should be full data before split)   ## Removed once clean data script is finalized.
-#     df2 = df.copy()
-#     df2.loc[df['y'] == 'no', 'target'] = 0
-#     df2.loc[df['y'] == 'yes', 'target'] = 1
-    
-    
-    # load in data (should be full data before split)   ## need to update in directly taking in train df and test df from data clean sript
-    
-    
-#     train_df, test_df = train_test_split(df2, test_size = 0.20, random_state=123)
-    
-    # Define types of features: numeric, categorical, ordinal for now. No drop features  ## need update on drop feature after data clean.
-    
-    numeric_features = ["age", "campaign", "pdays", "previous", "emp.var.rate", 
-                        "cons.price.idx", "cons.conf.idx", "euribor3m", "nr.employed", "duration"]
-    categorical_features = ["job", "poutcome", "month", "day_of_week", "contact","marital", "default", "housing", "loan"]
+    numeric_features = ["age", "contacts_during_campaign", "days_after_previous_contact", "previous_contacts", "employment_variation_rate", 
+                        "consumer_price_index", "consumer_confidence_index", "euribor_3_month_rate", "number_of_employees", "last_contact_duration"]
+    categorical_features = ["job", "previous_outcome", "month", "day_of_week", "contact","marital_status", "default", "housing", "loan"]
     ordinal_features = ["education"]
     education_ordering = ['illiterate', 'basic.4y','basic.6y','basic.9y','high.school',
                 'professional.course','university.degree', 'unknown']
     drop_features = []
-    target = ["y"]
+    target = ["target"]
     
     
     # drop target for train and test data.
