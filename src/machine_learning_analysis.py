@@ -130,14 +130,13 @@ def main(in_train, in_test, out_path):
     education_ordering = ['illiterate', 'basic.4y','basic.6y','basic.9y','high.school',
                 'professional.course','university.degree', 'unknown']
     drop_features = []
-    target = ["target"]
-    
+        
     
     # drop target for train and test data.
-    X_train = train_df.drop(columns=target)
-    y_train = train_df[target]
-    X_test = test_df.drop(columns=target)
-    y_test = test_df[target]
+    X_train = train_df.drop(columns=["target"])
+    y_train = train_df['target']
+    X_test = test_df.drop(columns=["target"])
+    y_test = test_df['target']
     
     
     # Define preprocessing transformers (preprocessors - column transformer)
