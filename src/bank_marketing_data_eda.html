@@ -14257,21 +14257,18 @@ a.anchor-link {
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Exploratory-data-analysis-of-the-UCI-Bank-Marketing-data-set">Exploratory data analysis of the UCI Bank Marketing data set<a class="anchor-link" href="#Exploratory-data-analysis-of-the-UCI-Bank-Marketing-data-set">&#182;</a></h1><p>This is the exploratory data analysis for our data analysis <a href="https://github.com/UBC-MDS/DSCI_522_Group_10">proposal</a>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs jp-mod-noInput ">
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Summary-of-the-data-set">Summary of the data set<a class="anchor-link" href="#Summary-of-the-data-set">&#182;</a></h2>
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>The data we are using for this project, <a href="https://archive.ics.uci.edu/ml/machine-learning-databases/00222/bank-additional.zip">bank-additional-full.csv</a>, was from a marketing campaign of a Portuguese bank. It was sourced from the UCI Learning Repository and can be found on this <a href="https://archive.ics.uci.edu/ml/datasets/Bank+Marketing">website</a>.</p>
 <p>Each row of the data is related to the direct telemarketing campaigns. They were using telemarketing to attempt to get customer to sign up for the bank's term deposit product.  The target in this dataset is yes or no to subscribing to the term deposit product.</p>
 <p>There are also some values of 'unknown' in some categorical features like education. We are considering imputation but will re-assess this while preprocessing the features.</p>
@@ -14294,6 +14291,8 @@ a.anchor-link {
 </div>
 
 </div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs jp-mod-noInput ">
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
 
@@ -14345,20 +14344,17 @@ a.anchor-link {
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Table 1. Counts of observation for each class.</p>
 <p>The data used in this analysis is very simliar to the data used in [Moro et al., 2014].</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Partition-the-data-set-into-training-and-test-sets">Partition the data set into training and test sets<a class="anchor-link" href="#Partition-the-data-set-into-training-and-test-sets">&#182;</a></h2>
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Before proceeding further, we will split the data such that 80% of observations are in the training and 20% of observations are in the test set. Below we list the counts of observations for each class:</p>
 
 </div>
@@ -14417,69 +14413,71 @@ a.anchor-link {
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Table 2. Counts of observation for each class for each data partition.</p>
 <p>As shown above, there is class imbalance. Our positive for this analysis is for our customers to subscribe to the term deposit. We will try to spot this class so we make sure we capture as many customers as we can with this term deposit product.  We care a bit more about recall than precision because we want to capture as many customers as we can. If we can tune our prediction model to minimize false negatives, the more customers we hope we can get signed up this term deposit product.</p>
 <p>We will first attempt to capture the right metrics to find and tune the best model. We note the class imbalance as shown in the table above.  So in addition to our initial tuning, we are prepared to change the training procedures (ex. class weight) and maybe even changing the data (over/under sampling) as we continue our analysis. This will also be dependent on our initial tuning to see if any metrics identify any other problems.</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Exploratory-analysis-on-the-training-set">Exploratory analysis on the training set<a class="anchor-link" href="#Exploratory-analysis-on-the-training-set">&#182;</a></h1>
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>To gain an understanding on which features could be helpful in predicting the positive class, we plotted histograms of numeric features (didn't subscibe: blue and subscibed: orange) and percent subscribed bar graphs for each of the categorical features for all observations in the training data set. Although the histograms distributions for all of the numeric features overlap to a certain degree, they do show a difference in their centres and spreads, for example, <code>age</code> histogram. For the categorical features, some features are similar in the proportion subscribed, while others seem to be promising in predicting the positive class. The <code>poutcome</code> (previous outcome) feature seem to be the best as previous success is highly associated with the positive class. In addition, the features values (<code>contact</code>: cellphone, <code>education</code>:illitrate, <code>age_category</code>:older adults then young adults, and <code>job</code>s:retired and student) seem to be associated with the positive class.</p>
 
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
+
+<div class="jp-Cell-outputWrapper">
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+<table><tr><td><img src='../results/age.png'></td><td><img src='../results/last_contact_duration.png'></td></tr><tr><td><img src='../results/contacts_during_campaign.png'></td><td><img src='../results/days_after_previous_contact.png'></td></tr><tr><td><img src='../results/previous_contacts.png'></td><td><img src='../results/employment_variation_rate.png'></td></tr><tr><td><img src='../results/consumer_price_index.png'></td><td><img src='../results/consumer_confidence_index.png'></td></tr><tr><td><img src='../results/euribor_3_month_rate.png'></td><td><img src='../results/number_of_employees.png'></td></tr></table>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="../results/age.png" alt=""><br>
-<img src="../results/last_contact_duration.png" alt=""><br>
-<img src="../results/contacts_during_campaign.png" alt=""><br>
-<img src="../results/days_after_previous_contact.png" alt=""><br>
-<img src="../results/previous_contacts.png" alt=""><br>
-<img src="../results/employment_variation_rate.png" alt=""><br>
-<img src="../results/consumer_price_index.png" alt=""><br>
-<img src="../results/consumer_confidence_index.png" alt=""><br>
-<img src="../results/euribor_3_month_rate.png" alt=""><br>
-<img src="../results/number_of_employees.png" alt=""></p>
 
 </div>
+
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Figure 1. Distribution of numeric features in the training set for subscribers and non-subscribers to the bank's term deposit product.</p>
 
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell  jp-mod-noInput ">
+
+<div class="jp-Cell-outputWrapper">
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+<table><tr><td><img src='../results/job.png'></td><td><img src='../results/marital_status.png'></td></tr><tr><td><img src='../results/default.png'></td><td><img src='../results/housing.png'></td></tr><tr><td><img src='../results/loan.png'></td><td><img src='../results/previous_outcome.png'></td></tr><tr><td><img src='../results/contact.png'></td><td><img src='../results/education.png'></td></tr><tr><td><img src='../results/day_of_week.png'></td><td><img src='../results/month.png'></td></tr></table>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><img src="../results/job.png" alt=""><br>
-<img src="../results/marital_status.png" alt=""><br>
-<img src="../results/default.png" alt=""><br>
-<img src="../results/housing.png" alt=""><br>
-<img src="../results/loan.png" alt=""><br>
-<img src="../results/previous_outcome.png" alt=""><br>
-<img src="../results/contact.png" alt=""><br>
-<img src="../results/education.png" alt=""><br>
-<img src="../results/day_of_week.png" alt=""><br>
-<img src="../results/month.png" alt=""></p>
 
 </div>
+
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Figure 2. Distribution of categorical features in the training set for subscribers to the bank's term deposit product.</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="References">References<a class="anchor-link" href="#References">&#182;</a></h1><p>[Moro et al., 2014] S. Moro, P. Cortez and P. Rita. A Data-Driven Approach to Predict the Success of Bank Telemarketing. Decision Support Systems, Elsevier, 62:22-31, June 2014. <a href="https://archive.ics.uci.edu/ml/datasets/Bank+Marketing#">https://archive.ics.uci.edu/ml/datasets/Bank+Marketing#</a>.</p>
 
 </div>
