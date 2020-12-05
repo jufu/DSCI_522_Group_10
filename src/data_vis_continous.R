@@ -25,32 +25,32 @@ main <- function(opt) {
   train_df <- read_csv(opt$data_path, col_types = cols())
   train_df <- read_csv('data/processed/bank-additional-full_train.csv')
   train_df <- train_df %>% 
-    mutate(y = case_when(y == "1" ~ "Purchased",
-                         y == "0"  ~ "Not Purchased"))
+    mutate(y = case_when(target == "1" ~ "Purchased",
+                         target == "0"  ~ "Not Purchased"))
 
   train_df <- train_df %>%
-    mutate(y = as.factor(y))
+    mutate(target = as.factor(target))
   train_df
 
-  train_df <- train_df %>% select(age, duration:previous, emp.var.rate : y)
+  train_df <- train_df %>% select(age, last_contact_duration :previous_contacts, employment_variation_rate : target)
   train_df
 
   train_df <- train_df %>% rename("Age" = "age",
-                                  "Last_Contact_Duration" = "duration",
-                                  "Number_of_Contacts_During_Campaign" = "campaign",
-                                  "Days_After_Previous_Contact" = "pdays",
-                                  "Number_of_Previous_Contacts" = "previous",
-                                  "Employment_Variation_Rate" = "emp.var.rate",
-                                  "Consumer_Price_Index" = "cons.price.idx",
-                                  "Consumer_Confidence_Index" = "cons.conf.idx",
-                                  "Euribor_3_Month_Rate" = "euribor3m",
-                                  "Number_of_Employees" = "nr.employed")
+                                  "Last_Contact_Duration" = "last_contact_duration",
+                                  "Number_of_Contacts_During_Campaign" = "contacts_during_campaign",
+                                  "Days_After_Previous_Contact" = "days_after_previous_contact",
+                                  "Number_of_Previous_Contacts" = "previous_contacts",
+                                  "Employment_Variation_Rate" = "employment_variation_rate",
+                                  "Consumer_Price_Index" = "consumer_price_index",
+                                  "Consumer_Confidence_Index" = "consumer_confidence_index",
+                                  "Euribor_3_Month_Rate" = "euribor_3_month_rate",
+                                  "Number_of_Employees" = "number_of_employees")
   train_df
 
   grid <- train_df %>%
-    gather(key = feature, value = value, -y) %>%
+    gather(key = feature, value = value, -target) %>%
     mutate(feature = str_replace_all(feature, "_", " ")) %>%
-    ggplot(aes(x = value, y = y, colour = y, fill = y)) +
+    ggplot(aes(x = value, y = target, colour = target, fill = target)) +
     facet_wrap(. ~ feature, scale = "free", ncol = 2) +
     geom_density_ridges(alpha = 0.8) +
     scale_fill_tableau() +
