@@ -95,8 +95,6 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-
-
 opt = docopt(__doc__)
 
 
