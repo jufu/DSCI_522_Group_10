@@ -1,4 +1,4 @@
-age,job,marital,education,default,housing,loan,contact,month,day_of_week,duration,campaign,pdays,previous,poutcome,emp.var.rate,cons.price.idx,cons.conf.idx,euribor3m,nr.employed,y
+age,job,marital_status,education,default,housing,loan,contact,month,day_of_week,last_contact_duration,contacts_during_campaign,days_after_previous_contact,previous_contacts,previous_outcome,employment_variation_rate,consumer_price_index,consumer_confidence_index,euribor_3_month_rate,number_of_employees,target
 35,entrepreneur,married,high.school,no,no,no,telephone,may,fri,178,2,999,0,nonexistent,1.1,93.994,-36.4,4.857,5191.0,0
 22,services,single,professional.course,no,no,no,cellular,jul,tue,256,3,999,1,failure,-1.7,94.215,-40.3,0.835,4991.6,1
 38,blue-collar,married,unknown,no,yes,no,telephone,jun,fri,42,5,999,0,nonexistent,1.4,94.465,-41.8,4.959,5228.1,0
