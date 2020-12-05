@@ -12,7 +12,7 @@ Options:
 --out_path=<out_path>         path to where the figures and tables will be written to (this is a required option)
 
 Example:
-    python machine_learning_analysis.py --in_train="data/processed/bank-additional-full_train.csv" --in_test="data/processed/bank-additional-full_test.csv" --out_path="results/"
+    python machine_learning_analysis.py --in_train="../data/processed/bank-additional-full_train.csv" --in_test="../data/processed/bank-additional-full_test.csv" --out_path="../results/"
     
 
 """
@@ -95,6 +95,8 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
+
+
 opt = docopt(__doc__)
 
 
@@ -120,17 +122,29 @@ def main(in_train, in_test, out_path):
     
     test_df = pd.read_csv(in_test, sep=',')
     
-    # Define types of features: numeric, categorical, ordinal for now. No drop features  ## need update on drop feature after data clean.
 
     
-    numeric_features = ["age", "contacts_during_campaign", "days_after_previous_contact", "previous_contacts", "employment_variation_rate", 
-                        "consumer_price_index", "consumer_confidence_index", "euribor_3_month_rate", "number_of_employees", "last_contact_duration"]
-    categorical_features = ["job", "previous_outcome", "month", "day_of_week", "contact","marital_status", "default", "housing", "loan"]
+    # load in data (should be full data before split)   ## Removed once clean data script is finalized.
+#     df2 = df.copy()
+#     df2.loc[df['y'] == 'no', 'target'] = 0
+#     df2.loc[df['y'] == 'yes', 'target'] = 1
+    
+    
+    # load in data (should be full data before split)   ## need to update in directly taking in train df and test df from data clean sript
+
+
+#     train_df, test_df = train_test_split(df2, test_size = 0.20, random_state=123)
+
+    # Define types of features: numeric, categorical, ordinal for now. No drop features  ## need update on drop feature after data clean.
+    
+    numeric_features = ["age", "campaign", "pdays", "previous", "emp.var.rate", 
+                        "cons.price.idx", "cons.conf.idx", "euribor3m", "nr.employed", "duration"]
+    categorical_features = ["job", "poutcome", "month", "day_of_week", "contact","marital", "default", "housing", "loan"]
     ordinal_features = ["education"]
     education_ordering = ['illiterate', 'basic.4y','basic.6y','basic.9y','high.school',
                 'professional.course','university.degree', 'unknown']
     drop_features = []
-    target = ["target"]
+    target = ["y"]
     
     
     # drop target for train and test data.
@@ -249,7 +263,8 @@ def main(in_train, in_test, out_path):
     ].set_index("rank_test_score").sort_index().reset_index().head(5)
     
 
-    hyper_opt_result.rename(columns= {'mean_test_score':'f1', 'rank_test_score':'rank'}, inplace=True)
+    hyper_opt_result.rename(columns= {'mean_test_score':'f1', 'rank_test_score':'rank', "param_logisticregression__C":'C', "param_logisticregression__max_iter":'Max Iter'}, inplace=True)
+
     hyper_opt_result.style.set_properties(**{'text-align': 'center'}).set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
     hyper_opt_result.to_html(output_folder + "hyperparameter_optimization_result.html", justify = "center", index=False)
     
@@ -322,4 +337,4 @@ def main(in_train, in_test, out_path):
 
 if __name__ == "__main__":
     main(opt["--in_train"], opt["--in_test"], opt["--out_path"])
-    
+
