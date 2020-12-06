@@ -289,18 +289,18 @@ def main(in_train, in_test, out_path):
     
     data={'Predictors':transformed_columns, 'Coefficient':weights}
     feature_importance = pd.DataFrame(data)
-    
+
     
     # Extract Predictor Importance and generate the top 10 table
     
     feature_importance["abs"] = abs(feature_importance["Coefficient"])
     feature_importance_top10 = feature_importance.sort_values(by="abs", ascending=False).nlargest(10,'abs')
     feature_importance_top10['Predictors'] = feature_importance_top10['Predictors'].replace({   
-        "duration" : "Last Contact Duration",
-        "emp.var.rate": "Employment Variation Rate",
-        "cons.price.idx": "Consumer Price Index",
-        "euribor3m": "Euribor 3 Month Rate",
-        "poutcome_failure" : "Failed in Previous Contact",
+        "last_contact_duration" : "Last Contact Duration",
+        "employment_variation_rate": "Employment Variation Rate",
+        "consumer_price_index": "Consumer Price Index",
+        "euribor_3_month_rate": "Euribor 3 Month Rate",
+        "previous_outcome_failure" : "Failed in Previous Contact",
         "month_mar" : "March",
         "month_may" : "May",
         "month_jun" : "June",
