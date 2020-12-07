@@ -31,20 +31,26 @@ In this project, we investigate if a machine learning algorithm can be used to p
 
 By doing exploratory analysis, we identified some of the features might be more useful to predict the subscription target. For the categorical features, a couple features looked promising to the model. The "previous outcome" feature seems to be a good candidate as previous success is highly correlated with those subscribing to the term deposit product.
 
-```{r poutcome, echo=FALSE, fig.cap="Figure 1.Distribution of previous outcome features in the training set for subscribers to the bank's term deposit product.", out.width = '50%'}
-knitr::include_graphics("../results/poutcome.svg")
+```{r poutcome, echo=FALSE, fig.cap="Figure 1.Distribution of previous outcome features in the training set for subscribers to the bank's term deposit product.", out.width='50%'}
+knitr::include_graphics("../results/previous_outcome.png")
 ```
 
 In addition, the "month" feature also shows potential. The time of year may impact when term deposit products are more interesting for the customers.
 
-```{r month, echo=FALSE, fig.cap="Figure 2.Distribution of month features in the training set for subscribers to the bank's term deposit product.", out.width = '30%'}
-knitr::include_graphics("../results/month.svg")
+```{r month, echo=FALSE, fig.cap="Figure 2.Distribution of month features in the training set for subscribers to the bank's term deposit product.", out.width = '50%'}
+knitr::include_graphics("../results/month.png")
 ```
 
 For numeric features, we plotted the distributions of each predictor from the training data set and coloured the distribution by different class (did not subscribe: blue and subscribed: orange). Although the distributions for all of these numeric features overlap to a certain degree, they also show a difference in their centers and spreads, for example, employment variation rate, last contact duration, euribor 3 month rate, and consumer price index.
 
-```{r numeric, echo=FALSE, fig.cap="Figure 3.Distribution of numeric features in the training set for subscribers and non-subscribers to the bank's term deposit product.", out.width = '70%'}
-knitr::include_graphics("../results/sub_numeric.png")
+```{r numeric, echo=FALSE, fig.cap="Figure 3.Distribution of numeric features in the training set for subscribers and non-subscribers to the bank's term deposit product.", out.width = '35%', fig.show='hold', fig.align='center'}
+
+
+
+knitr::include_graphics(c("../results/consumer_price_index.png", "../results/euribor_3_month_rate.png", "../results/last_contact_duration.png", "../results/employment_variation_rate.png"))
+
+
+
 ```
 
 # Methods

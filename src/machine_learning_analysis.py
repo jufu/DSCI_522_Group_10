@@ -12,7 +12,7 @@ Options:
 --out_path=<out_path>         path to where the figures and tables will be written to (this is a required option)
 
 Example:
-    python machine_learning_analysis.py --in_train="../data/processed/bank-additional-full_train.csv" --in_test="../data/processed/bank-additional-full_test.csv" --out_path="../results/"
+    python machine_learning_analysis.py --in_train="data/processed/bank-additional-full_train.csv" --in_test="data/processed/bank-additional-full_test.csv" --out_path="results/"
     
 
 """
@@ -95,8 +95,6 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-
-
 opt = docopt(__doc__)
 
 
@@ -122,36 +120,23 @@ def main(in_train, in_test, out_path):
     
     test_df = pd.read_csv(in_test, sep=',')
     
+    # Define types of features: numeric, categorical, ordinal for now. No drop features  ## need update on drop feature after data clean.
 
     
-    # load in data (should be full data before split)   ## Removed once clean data script is finalized.
-#     df2 = df.copy()
-#     df2.loc[df['y'] == 'no', 'target'] = 0
-#     df2.loc[df['y'] == 'yes', 'target'] = 1
-    
-    
-    # load in data (should be full data before split)   ## need to update in directly taking in train df and test df from data clean sript
-    
-    
-#     train_df, test_df = train_test_split(df2, test_size = 0.20, random_state=123)
-    
-    # Define types of features: numeric, categorical, ordinal for now. No drop features  ## need update on drop feature after data clean.
-    
-    numeric_features = ["age", "campaign", "pdays", "previous", "emp.var.rate", 
-                        "cons.price.idx", "cons.conf.idx", "euribor3m", "nr.employed", "duration"]
-    categorical_features = ["job", "poutcome", "month", "day_of_week", "contact","marital", "default", "housing", "loan"]
+    numeric_features = ["age", "contacts_during_campaign", "days_after_previous_contact", "previous_contacts", "employment_variation_rate", 
+                        "consumer_price_index", "consumer_confidence_index", "euribor_3_month_rate", "number_of_employees", "last_contact_duration"]
+    categorical_features = ["job", "previous_outcome", "month", "day_of_week", "contact","marital_status", "default", "housing", "loan"]
     ordinal_features = ["education"]
     education_ordering = ['illiterate', 'basic.4y','basic.6y','basic.9y','high.school',
                 'professional.course','university.degree', 'unknown']
     drop_features = []
-    target = ["y"]
-    
+        
     
     # drop target for train and test data.
-    X_train = train_df.drop(columns=target)
-    y_train = train_df[target]
-    X_test = test_df.drop(columns=target)
-    y_test = test_df[target]
+    X_train = train_df.drop(columns=["target"])
+    y_train = train_df['target']
+    X_test = test_df.drop(columns=["target"])
+    y_test = test_df['target']
     
     
     # Define preprocessing transformers (preprocessors - column transformer)
@@ -304,18 +289,18 @@ def main(in_train, in_test, out_path):
     
     data={'Predictors':transformed_columns, 'Coefficient':weights}
     feature_importance = pd.DataFrame(data)
-    
+
     
     # Extract Predictor Importance and generate the top 10 table
     
     feature_importance["abs"] = abs(feature_importance["Coefficient"])
     feature_importance_top10 = feature_importance.sort_values(by="abs", ascending=False).nlargest(10,'abs')
     feature_importance_top10['Predictors'] = feature_importance_top10['Predictors'].replace({   
-        "duration" : "Last Contact Duration",
-        "emp.var.rate": "Employment Variation Rate",
-        "cons.price.idx": "Consumer Price Index",
-        "euribor3m": "Euribor 3 Month Rate",
-        "poutcome_failure" : "Failed in Previous Contact",
+        "last_contact_duration" : "Last Contact Duration",
+        "employment_variation_rate": "Employment Variation Rate",
+        "consumer_price_index": "Consumer Price Index",
+        "euribor_3_month_rate": "Euribor 3 Month Rate",
+        "previous_outcome_failure" : "Failed in Previous Contact",
         "month_mar" : "March",
         "month_may" : "May",
         "month_jun" : "June",
