@@ -2,7 +2,17 @@
 # author: Group 10 (Justin Fu, Junting He, Chuck Ho, Asma Al-Odaini)
 # date: 2020-12-04
 
-all: data/raw/bank-additional/bank-additional-full.csv data/processed/bank-additional-full_train.csv data/processed/bank-additional-full_test.csv results/age.png results/last_contact_duration.png results/contacts_during_campaign.png results/days_after_previous_contact.png results/previous_contacts.png results/employment_variation_rate.png results/consumer_price_index.png results/consumer_confidence_index.png results/euribor_3_month_rate.png results/number_of_employees.png results/contact.png results/day_of_week.png results/default.png results/education.png results/housing.png results/job.png results/loan.png results/marital_status.png results/month.png src/bank_marketing_data_eda.html results/model_selection.html results/hyperparameter_optimization_result.html results/classification_report.svg results/top10_predictors_table.html results/top10_predictors_disregard_direction.svg doc/bank_marketing_predict_report.html 
+# This driver script extracts Bank marketing data from a source, 
+# preprocess and splits the data into training and test sets, 
+# generates visualizations of features and class distribution, 
+# and performs a machine learning analysis to predict 
+# the outcome of a term deposit bank marketing call 
+# (purchase or no purchase). 
+
+# example usage:
+# make all
+
+all:  src/bank_marketing_data_eda.html doc/bank_marketing_predict_report.html 
 
 #down and extract data from zip of the data source url
 data/raw/bank-additional/bank-additional-full.csv : src/download_and_extract_zip.py 
@@ -21,7 +31,7 @@ results/age%png results/last_contact_duration%png results/contacts_during_campai
 
 
 # create preliminary exploratory data analysis report
-src/bank_marketing_data_eda.html: src/bank_marketing_data_eda.ipynb data/raw/bank-additional/bank-additional-full.csv data/processed/bank-additional-full_train.csv data/processed/bank-additional-full_test.csv
+src/bank_marketing_data_eda.html: src/bank_marketing_data_eda.ipynb data/raw/bank-additional/bank-additional-full.csv data/processed/bank-additional-full_train.csv data/processed/bank-additional-full_test.csv results/age.png results/last_contact_duration.png results/contacts_during_campaign.png results/days_after_previous_contact.png results/previous_contacts.png results/employment_variation_rate.png results/consumer_price_index.png results/consumer_confidence_index.png results/euribor_3_month_rate.png results/number_of_employees.png results/job.png results/marital_status.png results/default.png results/housing.png results/loan.png results/previous_outcome.png results/contact.png results/education.png results/day_of_week.png  results/month.png
 	jupyter nbconvert src/bank_marketing_data_eda.ipynb --no-input --to html --TemplateExporter.exclude_input=True --no-prompt
 
 # create, train, and test model
