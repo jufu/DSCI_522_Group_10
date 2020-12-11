@@ -1,7 +1,15 @@
 Predicting deposit product subscription from contacted customers
 ================
 Asma Al-Odaini, Chuck Ho, Justin Fu, Junting He
-2020/11/26 (updated: 2020-12-05)
+2020/11/26 (updated: 2020-12-11)
+
+  - [Summary](#summary)
+  - [Introduction](#introduction)
+  - [Methods](#methods)
+      - [Data](#data)
+      - [Analysis](#analysis)
+  - [Results & Discussion](#results-discussion)
+  - [References](#references)
 
 # Summary
 
@@ -54,9 +62,12 @@ highly correlated with those subscribing to the term deposit product.
 <div class="figure" style="text-align: center">
 
 <img src="../results/previous_outcome.png" alt="Figure 1.Distribution of previous outcome features in the training set for subscribers to the bank's term deposit product." width="50%" />
+
 <p class="caption">
+
 Figure 1.Distribution of previous outcome features in the training set
 for subscribers to the bank’s term deposit product.
+
 </p>
 
 </div>
@@ -68,9 +79,12 @@ customers.
 <div class="figure" style="text-align: center">
 
 <img src="../results/month.png" alt="Figure 2.Distribution of month features in the training set for subscribers to the bank's term deposit product." width="50%" />
+
 <p class="caption">
+
 Figure 2.Distribution of month features in the training set for
 subscribers to the bank’s term deposit product.
+
 </p>
 
 </div>
@@ -86,9 +100,12 @@ month rate, and consumer price index.
 <div class="figure" style="text-align: center">
 
 <img src="../results/consumer_price_index.png" alt="Figure 3.Distribution of numeric features in the training set for subscribers and non-subscribers to the bank's term deposit product." width="35%" /><img src="../results/euribor_3_month_rate.png" alt="Figure 3.Distribution of numeric features in the training set for subscribers and non-subscribers to the bank's term deposit product." width="35%" /><img src="../results/last_contact_duration.png" alt="Figure 3.Distribution of numeric features in the training set for subscribers and non-subscribers to the bank's term deposit product." width="35%" /><img src="../results/employment_variation_rate.png" alt="Figure 3.Distribution of numeric features in the training set for subscribers and non-subscribers to the bank's term deposit product." width="35%" />
+
 <p class="caption">
+
 Figure 3.Distribution of numeric features in the training set for
 subscribers and non-subscribers to the bank’s term deposit product.
+
 </p>
 
 </div>
@@ -122,7 +139,7 @@ max\_iter with f1-score as the scoring metric. The R and Python
 programming languages (R Core Team 2020; Van Rossum and Drake 2009) and
 the following R and Python packages were used to perform the analysis:
 knitr (Xie 2020), matplotlib (Hunter 2007), seaborn (Waskom et al.
-2017), numpy(Oliphant 2006–), os(Van Rossum and Drake 2009),
+2017), numpy(Oliphant, n.d.), os(Van Rossum and Drake 2009),
 warnings(McKinney 2019), Pandas (McKinney 2010), altair(VanderPlas et
 al. 2018), docopt (Keleshev 2014) The code used to perform the analysis
 and create this report can be found here:
@@ -147,12 +164,15 @@ feature importance, and easier to communicate to higher level
 management. We also included class weight balancing to help deal with
 our class imbalance in this spotting a class problem.
 
-<p align="center">
-<iframe src="data:text/html;charset=utf-8, %3Ctable%20border=%221%22%20class=%22dataframe%22%3E%0A%20%20%3Cthead%3E%0A%20%20%20%20%3Ctr%20style=%22text-align:%20center;%22%3E%0A%20%20%20%20%20%20%3Cth%3E%3C/th%3E%0A%20%20%20%20%20%20%3Cth%3EAccuracy%3C/th%3E%0A%20%20%20%20%20%20%3Cth%3ERecall%3C/th%3E%0A%20%20%20%20%20%20%3Cth%3EPrecision%3C/th%3E%0A%20%20%20%20%20%20%3Cth%3Ef1%3C/th%3E%0A%20%20%20%20%20%20%3Cth%3EAP%3C/th%3E%0A%20%20%20%20%20%20%3Cth%3ERoc_Auc%3C/th%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%3C/thead%3E%0A%20%20%3Ctbody%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3EDummy%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.888%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.000%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.000%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.000%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.112%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.500%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3EDecision%20Tree%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.890%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.532%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.509%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.520%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.323%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.734%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3ENaive%20Bayes%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.810%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.654%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.327%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.436%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.387%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.828%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3ERBF%20SVM%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.908%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.364%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.670%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.471%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.613%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.920%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3ELogistic%20Regression%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.911%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.421%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.659%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.514%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.591%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.933%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3ELogistic%20Regression%20(balanced)%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.859%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.879%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.437%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.584%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.583%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.936%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3ERidge%20Classifier%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.906%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.321%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.672%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.435%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.594%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.932%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3ERidge%20Classifier(balanced)%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.863%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.841%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.443%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.580%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.577%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.930%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3ERandom%20Forest%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.912%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.457%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.652%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.537%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.634%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.939%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3ERandom%20Forest%20(balanced)%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.909%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.401%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.660%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.499%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.631%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.941%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%3C/tbody%3E%0A%3C/table%3E " style="border: none; seamless:seamless; width: 800px; height: 300px">
-</iframe>
-</p>
+**Table 1. Scoring results on the algorithms tested**
 
-Figure 4. Scoring results on the algorithms tested
+<p align="center">
+
+<iframe src="data:text/html;charset=utf-8, %3Ctable%20border=%221%22%20class=%22dataframe%22%3E%0A%20%20%3Cthead%3E%0A%20%20%20%20%3Ctr%20style=%22text-align:%20center;%22%3E%0A%20%20%20%20%20%20%3Cth%3E%3C/th%3E%0A%20%20%20%20%20%20%3Cth%3EAccuracy%3C/th%3E%0A%20%20%20%20%20%20%3Cth%3ERecall%3C/th%3E%0A%20%20%20%20%20%20%3Cth%3EPrecision%3C/th%3E%0A%20%20%20%20%20%20%3Cth%3Ef1%3C/th%3E%0A%20%20%20%20%20%20%3Cth%3EAP%3C/th%3E%0A%20%20%20%20%20%20%3Cth%3ERoc_Auc%3C/th%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%3C/thead%3E%0A%20%20%3Ctbody%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3EDummy%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.888%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.000%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.000%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.000%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.112%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.500%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3EDecision%20Tree%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.890%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.532%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.509%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.520%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.323%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.734%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3ENaive%20Bayes%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.810%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.654%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.327%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.436%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.387%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.828%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3ERBF%20SVM%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.908%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.364%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.670%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.471%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.613%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.920%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3ELogistic%20Regression%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.911%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.421%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.659%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.514%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.591%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.933%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3ELogistic%20Regression%20(balanced)%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.859%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.879%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.437%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.584%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.583%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.936%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3ERidge%20Classifier%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.906%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.321%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.672%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.435%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.594%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.932%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3ERidge%20Classifier(balanced)%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.863%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.841%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.443%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.580%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.577%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.930%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3ERandom%20Forest%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.912%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.457%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.652%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.537%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.634%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.939%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Cth%3ERandom%20Forest%20(balanced)%3C/th%3E%0A%20%20%20%20%20%20%3Ctd%3E0.909%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.401%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.660%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.499%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.631%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.941%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%3C/tbody%3E%0A%3C/table%3E " style="border: none; seamless:seamless; width: 800px; height: 300px">
+
+</iframe>
+
+</p>
 
 As a result, we are using Logistic Regression (balanced) with
 class\_weight equal to “balanced” which deals with the class imbalance
@@ -165,12 +185,27 @@ and max\_iter were 1 and 200, respectively. There were also other
 combinations that also had the same score, so we arbitrarily chose the
 first one.
 
+**Table 2. Top 5 results from hyperparameter optimization.**
+
 <p align="center">
+
 <iframe src="data:text/html;charset=utf-8, %3Ctable%20border=%221%22%20class=%22dataframe%22%3E%0A%20%20%3Cthead%3E%0A%20%20%20%20%3Ctr%20style=%22text-align:%20center;%22%3E%0A%20%20%20%20%20%20%3Cth%3Erank%3C/th%3E%0A%20%20%20%20%20%20%3Cth%3Ef1%3C/th%3E%0A%20%20%20%20%20%20%3Cth%3Eparam_logisticregression__C%3C/th%3E%0A%20%20%20%20%20%20%3Cth%3Eparam_logisticregression__max_iter%3C/th%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%3C/thead%3E%0A%20%20%3Ctbody%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Ctd%3E1%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.583735%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E1%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E200%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Ctd%3E2%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.583629%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E1%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E1000%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Ctd%3E2%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.583629%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E1%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E400%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Ctd%3E2%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.583629%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E1%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E600%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%20%20%3Ctr%3E%0A%20%20%20%20%20%20%3Ctd%3E2%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E0.583629%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E1%3C/td%3E%0A%20%20%20%20%20%20%3Ctd%3E1200%3C/td%3E%0A%20%20%20%20%3C/tr%3E%0A%20%20%3C/tbody%3E%0A%3C/table%3E " style="border: none; seamless:seamless; width: 800px; height: 180px">
+
 </iframe>
+
 </p>
 
-Figure 5. Top 5 results from hyperparameter optimization.
+<div class="figure" style="text-align: center">
+
+<img src="../results/model_selection_rank_by_f1.svg" alt="Figure 4. Model selection ranked by F1-score" width="60%" />
+
+<p class="caption">
+
+Figure 4. Model selection ranked by F1-score
+
+</p>
+
+</div>
 
 Our classification model has reasonable performance on the test data,
 with a final f1-score of 0.6. As we were focused on minimizing false
@@ -182,9 +217,12 @@ model.
 
 <div class="figure" style="text-align: center">
 
-<img src="../results/confusion_matrix.svg" alt="Figure 6. Comfusion matrix on the test result." width="60%" />
+<img src="../results/confusion_matrix.svg" alt="Figure 5. Comfusion matrix on the test result." width="60%" />
+
 <p class="caption">
-Figure 6. Comfusion matrix on the test result.
+
+Figure 5. Comfusion matrix on the test result.
+
 </p>
 
 </div>
@@ -195,9 +233,12 @@ features identified in our explanatory data analysis.
 
 <div class="figure" style="text-align: center">
 
-<img src="../results/top10_predictors_disregard_direction.svg" alt="Figure 7. Top 10 features identified by model." width="60%" />
+<img src="../results/top10_predictors_disregard_direction.svg" alt="Figure 6. Top 10 features identified by model." width="60%" />
+
 <p class="caption">
-Figure 7. Top 10 features identified by model.
+
+Figure 6. Top 10 features identified by model.
+
 </p>
 
 </div>
@@ -219,16 +260,16 @@ particular customers to try and maximize the revenue stream.
 
 # References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references hanging-indent">
 
-<div id="ref-barich1991framework" class="csl-entry">
+<div id="ref-barich1991framework">
 
 Barich, Howard, and Philip Kotler. 1991. “A Framework for Marketing
 Image Management.” *MIT Sloan Management Review* 32 (2): 94.
 
 </div>
 
-<div id="ref-Dua2019" class="csl-entry">
+<div id="ref-Dua2019">
 
 Dua, Dheeru, and Casey Graff. 2017. “UCI Machine Learning Repository.”
 University of California, Irvine, School of Information; Computer
@@ -236,31 +277,31 @@ Sciences. <http://archive.ics.uci.edu/ml>.
 
 </div>
 
-<div id="ref-Hunter" class="csl-entry">
+<div id="ref-Hunter">
 
-Hunter, J. D. 2007. “Matplotlib: A 2d Graphics Environment.” *Computing
+Hunter, J. D. 2007. “Matplotlib: A 2D Graphics Environment.” *Computing
 in Science & Engineering* 9 (3): 90–95.
 <https://doi.org/10.1109/MCSE.2007.55>.
 
 </div>
 
-<div id="ref-docoptpython" class="csl-entry">
+<div id="ref-docoptpython">
 
 Keleshev, Vladimir. 2014. *Docopt: Command-Line Interface Description
 Language*. <https://github.com/docopt/docopt>.
 
 </div>
 
-<div id="ref-mckinney-proc-scipy-2010" class="csl-entry">
+<div id="ref-mckinney-proc-scipy-2010">
 
-McKinney, Wes. 2010. “Data Structures for Statistical Computing in
-Python.” In *Proceedings of the 9th Python in Science Conference*,
-edited by Stéfan van der Walt and Jarrod Millman, 56–61.
-<https://doi.org/10.25080/Majora-92bf1922-00a>.
+McKinney. 2010. “Data Structures for Statistical Computing in Python.”
+In *Proceedings of the 9th Python in Science Conference*, edited by
+Stéfan van der Walt and Jarrod Millman, 56–61.
+[https://doi.org/ 10.25080/Majora-92bf1922-00a](https://doi.org/%2010.25080/Majora-92bf1922-00a%20).
 
 </div>
 
-<div id="ref-moro2014data" class="csl-entry">
+<div id="ref-moro2014data">
 
 Moro, Sérgio, Paulo Cortez, and Paulo Rita. 2014. “A Data-Driven
 Approach to Predict the Success of Bank Telemarketing.” *Decision
@@ -268,14 +309,14 @@ Support Systems* 62: 22–31.
 
 </div>
 
-<div id="ref-numpy" class="csl-entry">
+<div id="ref-numpy">
 
-Oliphant, Travis. 2006–. “NumPy: A Guide to NumPy.” USA: Trelgol
+Oliphant, Travis. n.d. “NumPy: A Guide to NumPy.” USA: Trelgol
 Publishing. <http://www.numpy.org/>.
 
 </div>
 
-<div id="ref-R" class="csl-entry">
+<div id="ref-R">
 
 R Core Team. 2020. *R: A Language and Environment for Statistical
 Computing*. Vienna, Austria: R Foundation for Statistical Computing.
@@ -283,7 +324,7 @@ Computing*. Vienna, Austria: R Foundation for Statistical Computing.
 
 </div>
 
-<div id="ref-rust2010spotlight" class="csl-entry">
+<div id="ref-rust2010spotlight">
 
 Rust, Roland T, Christine Moorman, and Gaurav Bhalla. 2010. “Spotlight
 on Reinvention: Rethinking Marketing.” *Harvard Business Review* 88 (1):
@@ -291,14 +332,7 @@ on Reinvention: Rethinking Marketing.” *Harvard Business Review* 88 (1):
 
 </div>
 
-<div id="ref-Python" class="csl-entry">
-
-Van Rossum, Guido, and Fred L. Drake. 2009. *Python 3 Reference Manual*.
-Scotts Valley, CA: CreateSpace.
-
-</div>
-
-<div id="ref-Altair2018" class="csl-entry">
+<div id="ref-Altair2018">
 
 VanderPlas, Jacob, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit
 Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben
@@ -308,7 +342,14 @@ Visualizations for Python.” *Journal of Open Source Software*, December.
 
 </div>
 
-<div id="ref-michael_waskom_2017_883859" class="csl-entry">
+<div id="ref-Python">
+
+Van Rossum, Guido, and Fred L. Drake. 2009. *Python 3 Reference Manual*.
+Scotts Valley, CA: CreateSpace.
+
+</div>
+
+<div id="ref-michael_waskom_2017_883859">
 
 Waskom, Michael, Olga Botvinnik, Drew O’Kane, Paul Hobson, Saulius
 Lukauskas, David C Gemperline, Tom Augspurger, et al. 2017.
@@ -317,10 +358,10 @@ Lukauskas, David C Gemperline, Tom Augspurger, et al. 2017.
 
 </div>
 
-<div id="ref-knitr" class="csl-entry">
+<div id="ref-knitr">
 
 Xie, Yihui. 2020. *Knitr: A General-Purpose Package for Dynamic Report
-Generation in r*. <https://yihui.org/knitr/>.
+Generation in R*. <https://yihui.org/knitr/>.
 
 </div>
 

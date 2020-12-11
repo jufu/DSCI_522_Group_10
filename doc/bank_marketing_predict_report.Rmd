@@ -89,6 +89,10 @@ cat('<p align="center"><iframe src="data:text/html;charset=utf-8,', tmp ,
     '" style="border: none; seamless:seamless; width: 800px; height: 180px"></iframe></p>')
 ```
 
+```{r, echo=FALSE, fig.cap="Figure 4. Model selection ranked by F1-score", out.width = '60%'}
+knitr::include_graphics("../results/model_selection_rank_by_f1.svg")
+```
+
 Our classification model has reasonable performance on the test data, with a final f1-score of 0.6. As we were focused on minimizing false negatives compared to false positives, as mentioned in the summary, we were using the f1-score as the main metric but had a bias of recall over precision as we focused on capturing as many customers as we can. With the current f1-score, we believe there is more room to improve on this model.
 
 ```{r, echo=FALSE, fig.cap="Figure 5. Comfusion matrix on the test result.", out.width = '60%'}
