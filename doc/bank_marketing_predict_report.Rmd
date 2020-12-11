@@ -69,6 +69,8 @@ With this first version of the classification model, we included all features in
 
 Our decisions in choosing the model and also hyperparameter optimization was based on the f1_score with a bias towards recall over precision. Based on the cross-validation f1_score, our conclusion was to use the logistic regression (balanced) algorithm. One advantage of this algorithm is that it is very interpretable, allows us to understand feature importance, and easier to communicate to higher level management. We also included class weight balancing to help deal with our class imbalance in this spotting a class problem.
 
+**Table 1. Scoring results on the algorithms tested**
+
 ```{r echo=FALSE, warning=FALSE,  results='asis'}
 tmp <- URLencode(paste(readLines("../results/model_selection.html"), collapse="\n"))
 
@@ -76,9 +78,9 @@ cat('<p align="center"><iframe src="data:text/html;charset=utf-8,', tmp ,
     '" style="border: none; seamless:seamless; width: 800px; height: 300px"></iframe></p>')
 ```
 
-Figure 4. Scoring results on the algorithms tested
-
 As a result, we are using Logistic Regression (balanced) with class_weight equal to "balanced" which deals with the class imbalance originally identified in our proposal. Then, we conducted hyperparameter optimization for the parmeters C, the inverse of regularization strength, and max_iter, the maximum number of iterations, by carrying out 5-fold cross-validation. We used the f1-score as our metric of model prediction performance. We observed that the optimal combination of C and max_iter were 1 and 200, respectively. There were also other combinations that also had the same score, so we arbitrarily chose the first one.
+
+**Table 2. Top 5 results from hyperparameter optimization.**
 
 ```{r echo=FALSE, warning=FALSE, results='asis'}
 tmp <- URLencode(paste(readLines("../results/hyperparameter_optimization_result.html"), collapse="\n"))
@@ -87,17 +89,19 @@ cat('<p align="center"><iframe src="data:text/html;charset=utf-8,', tmp ,
     '" style="border: none; seamless:seamless; width: 800px; height: 180px"></iframe></p>')
 ```
 
-Figure 5. Top 5 results from hyperparameter optimization.
+```{r, echo=FALSE, fig.cap="Figure 4. Model selection ranked by F1-score", out.width = '60%'}
+knitr::include_graphics("../results/model_selection_rank_by_f1.svg")
+```
 
 Our classification model has reasonable performance on the test data, with a final f1-score of 0.6. As we were focused on minimizing false negatives compared to false positives, as mentioned in the summary, we were using the f1-score as the main metric but had a bias of recall over precision as we focused on capturing as many customers as we can. With the current f1-score, we believe there is more room to improve on this model.
 
-```{r, echo=FALSE, fig.cap="Figure 6. Comfusion matrix on the test result.", out.width = '60%'}
+```{r, echo=FALSE, fig.cap="Figure 5. Comfusion matrix on the test result.", out.width = '60%'}
 knitr::include_graphics("../results/confusion_matrix.svg")
 ```
 
 From this stage of analysis, we reviewed the features with the top 10 weights identified by the model. They did overlap with the some of features identified in our explanatory data analysis.
 
-```{r, echo=FALSE, fig.cap="Figure 7. Top 10 features identified by model.", out.width = '60%'}
+```{r, echo=FALSE, fig.cap="Figure 6. Top 10 features identified by model.", out.width = '60%'}
 knitr::include_graphics("../results/top10_predictors_disregard_direction.svg")
 ```
 
