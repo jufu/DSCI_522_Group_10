@@ -206,21 +206,32 @@ def main(in_train, in_test, out_path):
         pipe = make_pipeline(preprocessor, model)
         scores = cross_validate(pipe, X_train, y_train, cv=5, scoring=scoring, n_jobs=-1)
         summary = store_cross_val_results(model_name, scores, results_df)
+    assert bool(results_df)==True  # make sure the dict is not empty.
     model_selection = pd.DataFrame(results_df).T 
     model_selection.style.set_properties(**{'text-align': 'center'})
 
-
+    
     # Generated the model summary to out_path folder (if not exist, create it)
     
     output_folder = out_path
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
     
-
+    #export the model selection table as html
     model_selection.to_html(output_folder + "model_selection.html", justify = "center")
     
     
+    # Make a bar chart that rank the model by F1 score
+    model_selection2 = model_selection.reset_index()
+    plot_model_sel = alt.Chart(model_selection2, title="Model Selection")\
+            .mark_bar()\
+            .encode(x=alt.X("f1:Q",title="f1 scores"),
+                    y=alt.Y("index", sort="-x", title= "Models"))
     
+    #Save the ranked bar chart in the specified folder
+    plot_model_sel.save(output_folder +  "model_selection_rank_by_f1.svg")
+
+
     # Selected the Logistic Regression model
     
     pipe_lr_balance = make_pipeline(preprocessor, LogisticRegression(class_weight="balanced"))
@@ -262,8 +273,7 @@ def main(in_train, in_test, out_path):
     # Plot confusion matrix and generated the figure in the folder
     cm = plot_confusion_matrix(pipe_lr_best, X_test, y_test, display_labels=["Not Subscribed", "Subscribed"], values_format="d", cmap=plt.cm.Blues)
     
-    
-    # path2 = "../data/confusion_matrix.png"
+    # Save plot to the specify folder
     plt.tight_layout()
     plt.savefig(output_folder + "confusion_matrix.svg", bbox_inches = "tight")
     
@@ -275,7 +285,7 @@ def main(in_train, in_test, out_path):
     report_df = pd.DataFrame(c_report)
     cr_plot = sns.heatmap(report_df.iloc[:-1, :].T, annot=True, cmap="Blues")
     
-    #path3 = "../data/classification_report.png"
+    # Save plot to the specify folder
     plt.savefig(output_folder + "classification_report.svg")
     
     
@@ -315,7 +325,7 @@ def main(in_train, in_test, out_path):
     plot = alt.Chart(feature_importance_top10).mark_bar().encode(alt.X("abs:Q", type='quantitative', scale=alt.Scale(domain=(0, 4)),title="Feature Coefficients"), alt.Y("Predictors", sort="-x", title="Features"))
 
         
-    # path = "../data/top10_features.svg"
+    # Save the top 10 predictor plot
     plot.save(output_folder +  "top10_predictors_disregard_direction.svg")
 
 
