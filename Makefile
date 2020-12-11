@@ -40,7 +40,7 @@ results/model_selection%html results/hyperparameter_optimization_result%html res
 
 # render final report
 doc/bank_marketing_predict_report.html : results/previous_outcome.png results/month.png results/consumer_price_index.png results/euribor_3_month_rate.png results/last_contact_duration.png results/employment_variation_rate.png results/model_selection.html results/hyperparameter_optimization_result.html results/confusion_matrix.svg results/top10_predictors_disregard_direction.svg doc/bank_marketing_predict_report.Rmd
-	Rscript -e "rmarkdown::render('doc/bank_marketing_predict_report.Rmd', output_format = 'github_document')" 
+	Rscript -e "rmarkdown::render('doc/bank_marketing_predict_report.Rmd', output_format = 'html_document')" 
 
 clean: 
 	rm -rf data
