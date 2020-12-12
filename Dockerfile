@@ -44,6 +44,7 @@ RUN conda install --quiet --yes \
 RUN conda install -y -c conda-forge \
     'altair=4.1.*' \
     'altair_saver=0.5.*' \
+    'altair_data_server=0.4.*' \
     'docopt=0.6.*' && \
     conda clean --all -f -y && \
     fix-permissions "${CONDA_DIR}" && \
