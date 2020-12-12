@@ -1,3 +1,8 @@
+# Docker image for DSCI522 Group 10's bank telemarketing campaign data analysis project
+#
+# This Dockerfile will be available on DockerHub at jufu/ubcmds_522_group10_bank
+#
+
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
 ARG BASE_CONTAINER=jupyter/scipy-notebook
